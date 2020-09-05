@@ -82,6 +82,7 @@
       toastr.error('{{ Session::get('error')}}');
       @endif
     </script>
+    @yield('scripts')
 </body>
 
 </html>
