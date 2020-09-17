@@ -40,17 +40,11 @@ class DepartementsController extends Controller
 
         $department->save();
 
-        Session::flash('success',  $department->name .  ' registerd successfuly');
+        Session::flash('success',  $department->name .  ' registered successfully');
         return redirect()->route('department.index');
     }
 
 
-    public function show($id)
-    {
-        $department = Department::findOrFail($id);
-        return view('hrm.department.show')
-            ->with('department', $department);
-    }
 
     public function edit($id)
     {
@@ -74,7 +68,7 @@ class DepartementsController extends Controller
         $department->comment = $request->description;
 
         $department->save();
-        Session::flash('success',  $department->name . ' updated successfuly');
+        Session::flash('success',  $department->name . ' updated successfully');
         return redirect()->route('department.index');
     }
 
@@ -82,8 +76,10 @@ class DepartementsController extends Controller
     public function destroy($id)
     {
         $department = Department::findOrFail($id);
+        // dd($department);
         $department->delete();
-        Session::flash('success',  $department->name . ' Deleted successfuly');
-        return redirect()->route('department.index');
+        Session::flash('success',  $department->name . ' Deleted successfully');
+        // return redirect()->back();
+        return response()->json(['success' => 'department deleted sucessfuly']);
     }
 }

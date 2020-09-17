@@ -85,6 +85,7 @@
     <script src="{{ asset('js/jquery.validate.min.js') }}"> </script>
     <script src="{{ asset('js/custome_validation.js') }}"> </script>
     <script src="{{ asset('js/Chart.min.js') }}"> </script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"> </script>
 
 
     <script src="{{asset('js/front.js') }}"> </script>

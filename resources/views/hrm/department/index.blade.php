@@ -45,6 +45,7 @@
                         @if ($departments->count()> 0)
                         @foreach ($departments as $department)
                         <tr>
+                            <input type="hidden" class="deleted_value_id" value="{{$department->id}}">
                             <td class='p-1'>{{++$no}}</td>
                             <td class='p-1'>{{$department->name}}</td>
                             <td class='p-1'>{{$department->comment}}</td>
@@ -52,10 +53,9 @@
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
                                 <a href="{{route('department.edit', $department->id)}}"><i class="fas fa-edit"></i></a>
                             </td>
-                            <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
-                                <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$department->id}})"
-                                    data-target="#DeleteModal"><i class="fas fa-trash red"></i>
-                                </a>
+                            <td class='p-1 text-center' title="details">
+                                <button type="submit" id="delete_department"
+                                    class="btn btn-primary delete_department">Delete</button>
                             </td>
                             {{-- @endcan --}}
                         </tr>
@@ -75,56 +75,62 @@
         </div>
     </div>
 </div>
-<div id="DeleteModal" class="modal fade text-danger" role="dialog">
-    <div class="modal-dialog ">
-        <!-- Modal content-->
-        <form action="" id="deleteForm" method="post">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h4 class="modal-title text-center text-white">DELETE CONFIRMATION</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @csrf
-                    @method('DELETE')
-                    <p class="text-center">Are You Sure Want To Delete <span class="font-weight-bold">
-                            {{$department->id}}</span> </p>
-                </div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                    <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
-                        onclick="formSubmit()">Yes, Delete</button>
-
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<!-- Modal -->
 
 @endsection
 @section('scripts')
 <script type="application/javascript">
     $( document ).ready( function () {
-				$( '#personales' ).DataTable();
+                $( '#personales' ).DataTable();
+                $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+$('.delete_department').click(function (e) {
+
+    e.preventDefault();
+    var deleted_id = $(this).closest("tr").find('.deleted_value_id').val();
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                var data = {
+                    "_token": "{{ csrf_token() }}",
+                    "id": deleted_id
+                }
+                var urlPath = 'hrm/department/destroy/'+ deleted_id;
+                alert(urlPath);
 
 
-        function deleteData(id){
-        var id = id;
-        var url = '{{ route("department.destroy", ":id") }}';
-        url = url.replace(':id', id);
+                $.ajax({
+                    type: "DELETE",
+                    url:  urlPath,
+                    data: data,
+                    success: function (response) {
+                        swal(response.status, {
+                        icon: "success"
+                        });
+                    },
+                    error:function(){
+                        swal("Your imaginary file is safe!");
+                    }
+                });
 
-        $("#deleteForm").attr('action', url);
-        }
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+            });
 
-        function formSubmit()
-        {
-        $("#deleteForm").submit();
-        }
+            });
+            } );
 
-			} );
 </script>
 
 @endsection
