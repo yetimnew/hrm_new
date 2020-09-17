@@ -2,84 +2,88 @@
 
 namespace App\Http\Controllers\HRM;
 
+use App\HRM\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DepartementsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $departments = Department::orderBy('created_at', 'DESC')->get();
+        return view('hrm.department.index')->with('departments', $departments);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $department = new Department;
+        // $positions = Position::orderBy('created_at', 'DESC')->get();
+        return view('hrm.department.create')
+            ->with('department', $department);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $this->validate($request, [
+
+            'name' =>  'required|unique:departments,name'
+
+        ]);
+
+        $department = new Department;
+        $department->name = $request->name;
+        $department->comment = $request->description;
+
+        $department->save();
+
+        Session::flash('success',  $department->name .  ' registerd successfuly');
+        return redirect()->route('department.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $department = Department::findOrFail($id);
+        return view('hrm.department.show')
+            ->with('department', $department);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $department = Department::findOrFail($id);
+
+        return view('hrm.department.edit')
+
+            ->with('department', $department);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+
+            'name' =>  'required'
+
+        ]);
+
+        $department = Department::findOrFail($id);
+        $department->name = $request->name;
+        $department->comment = $request->description;
+
+        $department->save();
+        Session::flash('success',  $department->name . ' updated successfuly');
+        return redirect()->route('department.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $department = Department::findOrFail($id);
+        $department->delete();
+        Session::flash('success',  $department->name . ' Deleted successfuly');
+        return redirect()->route('department.index');
     }
 }

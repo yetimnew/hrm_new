@@ -1,6 +1,6 @@
 <?php
 
-use App\Position;
+use App\HRM\Position;
 use Illuminate\Database\Seeder;
 
 class PositionsTableSeeder extends Seeder

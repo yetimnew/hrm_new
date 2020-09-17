@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateDowntimesTable extends Migration
+class CreateJobTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateDowntimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('downtimes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('job_types', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->text('comment')->nullable();
-            $table->boolean('status')->default(1);
-
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateDowntimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('downtimes');
+        Schema::dropIfExists('job_types');
     }
 }

@@ -19,7 +19,7 @@
                 <h2>Employee Registration</h2>
                 <!-- @can('driver create') -->
                 <div class="ml-auto">
-                    <a href="{{route('personale')}}" class="btn btn-outline-primary">
+                    <a href="{{route('personale.index')}}" class="btn btn-outline-primary">
                         <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
                 </div>
                 <!-- @endcan -->
@@ -27,33 +27,27 @@
 
         </div>
         <div class="card-body">
-            @if (count($errors)>0)
 
-            @foreach ($errors->all() as $error)
-
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <strong> {{$error}}!</strong>
-            </div>
-            @endforeach
-            </ul>
-
-            @endif
             <form method="post" action="{{route('personale.store')}}" class="form-horizontal" id="driver_reg"
                 novalidate>
                 @csrf
                 @include('hrm.personale.form')
-                <div class="form-group required">
-                    <button type="submit" class="btn btn-primary" name="save">Save</button>
-
-                </div>
         </div>
+    </div>
+    <div class="d-flex align-items-center mt-4">
+        <div class="form-group 	required ">
+            <label class="control-label" for="job"></label>
+            This Field must have value</div>
+        {{-- @can('customer create') --}}
 
+        <div class="form-group ml-auto">
+            <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+                    aria-hidden="true"></i>Save</button>
+
+        </div>
     </div>
 </div>
+
 <div class="card-footer">
 
 </div>
@@ -61,9 +55,5 @@
 </form>
 </div>
 </div>
-
-@endsection
-@section( 'javascript' )
-
 
 @endsection

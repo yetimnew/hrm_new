@@ -13,6 +13,8 @@
 
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.default.css')}}">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
@@ -20,38 +22,53 @@
     <link rel="stylesheet" href="{{asset('/css/buttons.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/fontastic.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/sweetalert2.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('/css/sweetalert2.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('/icons-reference/styles.css')}}">
     <link rel="stylesheet" href="{{asset('/css/jquery.datetimepicker.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('/css/bootstrap-datetimepicker.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/select2-bootstrap.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('/css/multi-select.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('/css/bootstrap-multiselect.css')}}"> --}}
+    {{-- <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> --}}
+
     @yield('styles')
 </head>
 
 <body>
-    <div class="page" id="app">
+    <div id="app">
 
-        @include('master.topnav')
+        <div class="page">
+            @include('master.topnav')
+            <div class="page-content d-flex align-items-stretch">
+                @include('master.sidenav')
+                <div class="content-inner">
+                    @yield('content')
 
-        <div class="page-content d-flex align-items-stretch">
-            @include('master.sidenav')
-            <div class="content-inner">
-                <section class="dashboard-counts no-padding-bottom">
-                    <div class="container">
-                        <div class="row bg-white has-shadow">
-                            @yield('content')
+                    <footer class="main-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>ERTE &copy; 2018</p>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <p>Design by <span class="external">Yetimesht T</span></p>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                @include('master.footer')
+                    </footer>
 
+                </div>
             </div>
         </div>
+
     </div>
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{asset('js/jquery.min.js') }}"> </script>
+    {{-- <script src="{{asset('js/jquery.min.js') }}"> </script> --}}
+    <script src="{{ asset('js/moment.js') }}"> </script>
     <script src="{{ asset('js/select2.min.js') }}"> </script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"> </script>
     <script src="{{ asset('js/dataTables.buttons.min.js') }}"> </script>
@@ -64,23 +81,24 @@
 
     <script src="{{ asset('js/jquery.cookie.js') }}"> </script>
     <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"> </script>
-    <script src="{{ asset('js/moment.js') }}"> </script>
 
     <script src="{{ asset('js/jquery.validate.min.js') }}"> </script>
     <script src="{{ asset('js/custome_validation.js') }}"> </script>
     <script src="{{ asset('js/Chart.min.js') }}"> </script>
 
 
+    <script src="{{asset('js/front.js') }}"> </script>
+
     <script>
         @if (Session::has('success'))
       toastr.success('{{ Session::get('success')}}');
-      @endif
-      @if (Session::has('info'))
-      toastr.info('{{ Session::get('info')}}');
-      @endif
-      @if (Session::has('error'))
-      toastr.error('{{ Session::get('error')}}');
-      @endif
+    @endif
+    @if (Session::has('info'))
+    toastr.info('{{ Session::get('info')}}');
+    @endif
+    @if (Session::has('error'))
+    toastr.error('{{ Session::get('error')}}');
+    @endif
     </script>
     @yield('scripts')
 </body>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Department;
+use App\HRM\Department;
 use Illuminate\Database\Seeder;
 
 class DepartmentTableSeeder extends Seeder

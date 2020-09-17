@@ -32,7 +32,8 @@ class CreatePersonalesTable extends Migration
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('restrict');
             $table->unsignedBigInteger('position_id')->index();
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('restrict');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
+            $table->text('comment')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

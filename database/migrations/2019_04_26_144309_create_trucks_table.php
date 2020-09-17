@@ -16,8 +16,8 @@ class CreateTrucksTable extends Migration
             $table->string('chasisNumber')->nullable();
             $table->string('engineNumber')->nullable();
             $table->integer('tyreSyze')->nullable();
-            $table->double('serviceIntervalKM',12,4)->nullable();
-            $table->double('purchasePrice',12,4)->nullable();
+            $table->double('serviceIntervalKM', 12, 4)->nullable();
+            $table->double('purchasePrice', 12, 4)->nullable();
             $table->date('productionDate')->nullable();
             $table->date('serviceStartDate')->nullable();
             $table->boolean('status')->default(1);

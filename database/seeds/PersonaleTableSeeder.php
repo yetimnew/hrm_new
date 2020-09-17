@@ -1,6 +1,6 @@
 <?php
 
-use App\Personale;
+use App\HRM\Personale;
 use Illuminate\Database\Seeder;
 
 class PersonaleTableSeeder extends Seeder

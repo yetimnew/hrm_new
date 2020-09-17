@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\Department;
+use App\HRM\Department;
 use App\Http\Controllers\Controller;
-use App\Personale;
-use App\Position;
+use App\HRM\Personale;
+use App\HRM\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -14,8 +14,7 @@ class PersonalesController extends Controller
 
     public function index()
     {
-
-        $personales = Personale::active()->orderBy('created_at', 'DESC')->get();
+        $personales = Personale::with(['department', 'position'])->orderBy('created_at', 'DESC')->get();
         return view('hrm.personale.index')->with('personales', $personales);
     }
 
@@ -24,10 +23,10 @@ class PersonalesController extends Controller
     {
         $personale = new Personale;
         $departments = Department::orderBy('created_at', 'DESC')->get();
-        $jobs = Position::orderBy('created_at', 'DESC')->get();
+        $positions = Position::orderBy('created_at', 'DESC')->get();
         return view('hrm.personale.create')
             ->with('departments', $departments)
-            ->with('jobs', $jobs)
+            ->with('positions', $positions)
             ->with('personale', $personale);
     }
 
@@ -74,7 +73,7 @@ class PersonalesController extends Controller
         $personale->save();
 
         Session::flash('success',  $personale->driverid .  ' registerd successfuly');
-        return redirect()->route('personale');
+        return redirect()->route('personale.index');
     }
 
     /**
@@ -140,12 +139,43 @@ class PersonalesController extends Controller
 
         $personale->save();
         Session::flash('success',  $personale->driverid . ' updated successfuly');
-        return redirect()->route('personale');
+        return redirect()->route('personale.index');
     }
 
 
     public function destroy($id)
     {
-        //
+        $personale = Personale::findOrFail($id);
+        $personale->delete();
+        Session::flash('success',  $personale->driverid . ' Deleted successfuly');
+        return redirect()->route('personale.index');
+    }
+    public function deactivate($id)
+    {
+        // dd($id);
+        $personale = Personale::findOrFail($id);
+        return view('hrm.personale.deactivate')
+            ->with('personale', $personale);
+    }
+    public function deactivate_store(Request $request, $id)
+    {
+        // dd($request->all());
+        $personale = Personale::findOrFail($id);
+        $personale->status = 0;
+        $personale->comment = $request->comment;
+
+        $personale->save();
+        Session::flash('success',  $personale->driverid . ' Deactivated successfuly');
+        return redirect()->route('personale.index');
+    }
+    public function activate($id)
+    {
+
+        $personale = Personale::findOrFail($id);
+        $personale->status = 1;
+
+        $personale->save();
+        Session::flash('success',  $personale->driverid . ' Activated successfuly');
+        return redirect()->route('personale.index');
     }
 }

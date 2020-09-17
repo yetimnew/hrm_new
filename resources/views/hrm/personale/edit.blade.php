@@ -10,13 +10,12 @@
     </ol>
 
     <div class="card text-left">
-
         <div class="card-header">
             <div class="d-flex align-items-center">
                 <h2>Personale Update <strong class="blue">{{$personale->name}}</strong></h2>
                 @can('driver edit')
                 <div class="ml-auto">
-                    <a href="{{route('personale')}}" class="btn btn-outline-primary">
+                    <a href="{{route('personale.index')}}" class="btn btn-outline-primary">
                         <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
                 </div>
                 @endcan
@@ -24,7 +23,7 @@
 
         </div>
         <div class="card-body">
-            <form method="post" action="{{route('personale.update',['id'=>$personale->id])}}" class="form-horizontal"
+            <form method="post" action="{{route('personale.update',$personale->id)}}" class="form-horizontal"
                 id="driver_reg" novalidate>
                 @csrf
                 @method('PATCH')
@@ -39,12 +38,17 @@
 
                 </div>
         </div>
-
-        <div class="card-footer">
-
-        </div>
-        </form>
     </div>
+
+    <div class="card-footer">
+
+    </div>
+    </form>
 </div>
+</div>
+</div>
+
+@endsection
+@section('scripts')
 
 @endsection

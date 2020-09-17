@@ -1,6 +1,6 @@
 <?php
 
-use App\Profile;
+use App\HRM\Profile;
 use App\User;
 use Illuminate\Database\Seeder;
 

@@ -1,18 +1,19 @@
 <?php
 
-namespace App;
+namespace App\HRM;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Position extends Model
 {
     protected $fillable = [
         'id',
         'name',
+        'job_description',
         'status'
     ];
     public function personales()
     {
-        return $this->hasMany('App\Personale');
+        return $this->hasMany('App\HRM\Personale');
     }
 }
