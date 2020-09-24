@@ -1,132 +1,317 @@
 @extends( 'master.app' )
 @section( 'title', 'TIMS | Personale show' )
 @section('content')
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a>
-    </li>
-    <li class="breadcrumb-item active">Personale</li>
-    <li class="breadcrumb-item active">Show</li>
-</ol>
 
-
-<div class="col-md-12">
-    <div class="card text-left">
-
-        <div class="card-header">
-            <div class="d-flex align-items-center">
-                <h4>Details Driver ID Number {{$personale->driverid}} </h4>
-                <div class="ml-auto">
-                    <a href="{{route('personale.index')}}" class="btn btn-outline-primary"> <i
-                            class="fas fa-backward mr-1" aria-hidden="true"> Back</i> </a>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">ID Number</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->driverid}}</h4>
-                        </div>
-                    </div>
-
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Full Name</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->fullname}}</h4>
-                        </div>
-                    </div>
-
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Sex</label>
-                        <div class="col-lg-8">
-
-
-                            <h4 class="col-form-label "> {{$personale->sex}}</h4>
-
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Birth Date</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->birthdate}}</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Sub City</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->zone}}</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Worda</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->woreda}}</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Keble</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->kebele}}</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">House Number</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->housenumber}}</h4>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Hired Date</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->hireddate}}</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Driver ?</label>
-                        <div class="col-lg-8">
-
-                            @if ($personale->driver == 1)
-
-                            <h4 class="col-form-label ">Driver</h4>
-                            @else
-                            <h4 class="col-form-label ">Not Driver</h4>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Department</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->department->name}}</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Job's Title</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->position->name}}</h4>
-                        </div>
-                    </div>
-
-                    <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Coment</label>
-                        <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$personale->comment}}</h4>
-                        </div>
+<header class="page-header">
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
+    </div>
+</header>
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container">
+        <div class="row bg-white has-shadow">
+            <div class="col-12">
+                <div class="d-flex align-items-center">
+                    <h4>Details Driver ID Number {{$personale->driverid}} </h4>
+                    <div class="ml-auto">
+                        <a href="{{route('personale.index')}}" class="btn btn-outline-primary"> <i
+                                class="fas fa-backward mr-1" aria-hidden="true"> Back</i> </a>
                     </div>
                 </div>
-
 
             </div>
-            <div class="card-footer">
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group 	required">
+                    <label class="control-label">Driver ID</label>
+                    <div class="input-group-sm">
+                        <input name="driverid" type="text" id="driverid"
+                            class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                            value="{{old('driverid') ?? $personale->driverid}}" disabled>
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">First Name</label>
+
+                    <div class="input-group-sm">
+                        <input name="firstname" type="text" id="firstname"
+                            class="form-control select {{ $errors->has('firstname') ? ' is-invalid' : '' }}"
+                            value="{{old('firstname') ?? $personale->firstname}}" disabled>
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="fathername">Father Name</label>
+
+                    <div class="input-group-sm">
+                        <input name="fathername" type="text" id="fathername"
+                            class="form-control select {{ $errors->has('fathername') ? ' is-invalid' : '' }}"
+                            value="{{old('fathername') ?? $personale->fathername}}" disabled>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="gfathername">Grand Father Name</label>
+
+                    <div class="input-group-sm">
+                        <input name="gfathername" type="text" id="gfathername"
+                            class="form-control select {{ $errors->has('gfathername') ? ' is-invalid' : '' }}"
+                            value="{{old('gfathername') ?? $personale->gfathername}}" disabled>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label" for="sex">Sex</label>
+
+                    <select name="sex" id="sex" required
+                        class="form-control form-control-sm {{ $errors->has('sex') ? ' is-invalid' : '' }}" disabled>
+                        @if ($personale->sex == 1)
+                        <option class="dropup" value="0" selected>Male </option>
+                        <option class="dropup" value="1">Fmale</option>
+                        @else
+                        <option class="dropup" value="1" selected>Fmale</option>
+                        <option class="dropup" value="0">Male</option>
+                        @endif
+
+                    </select>
+
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="birthdate">Birth Date</label>
+                    <div class="input-group input-group-sm">
+                        <input name="birthdate" type="text" id="birthdate"
+                            class="form-control  {{ $errors->has('birthdate') ? ' is-invalid' : '' }}"
+                            value="{{old('birthdate') ?? $personale->birthdate}}" disabled>
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="hireddate">Hired Date</label>
+                    <div class="input-group input-group-sm">
+                        <input name="hireddate" type="text" id="hireddate"
+                            class="form-control  {{ $errors->has('hireddate') ? ' is-invalid' : '' }}"
+                            value="{{old('hireddate') ?? $personale->hireddate}}" disabled>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="driver">Driver</label>
+
+                    <select name="driver" class="form-control form-control-sm" id="driver" required>
+                        @if ($personale->driver == 1)
+                        <option class="dropup" value="1" selected disabled>Yes </option>
+                        @endif
+                        @if ($personale->driver == 0)
+                        <option class="dropup" value="0" selected disabled>No </option>
+                        @endif
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+
+                <div class="form-group  required">
+                    <label class="control-label" for="department_id">Department Name</label>
+                    <div class="input-group-sm">
+                        <select name="department_id" id="department_id"
+                            class="form-control {{ $errors->has('department_id') ? ' is-invalid' : '' }}" disabled>
+
+                            <option class="dropup" value="" selected disabled> {{$personale->department->name}}
+                            </option>
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group  required">
+                    <label class="control-label" for="position_id">position_id Title</label>
+                    <div class="input-group-sm">
+                        <select name="position_id" id="position_id"
+                            class="form-control {{ $errors->has('position_id') ? ' is-invalid' : '' }}" disabled>
+                            <option class="dropup" value="" selected disabled> {{$personale->position->name}}
+                            </option>
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="employment_status">employment_status</label>
+
+                    <select name="employment_status" id="employment_status" required
+                        class="form-control form-control-sm {{ $errors->has('employment_status') ? ' is-invalid' : '' }}"
+                        disabled>
+
+                        @if ($personale->employment_status == 1)
+                        <option class="dropup" value="1" selected>Permanent</option>
+                        @else
+                        <option class="dropup" value="0" selected>Contract</option>
+                        @endif
+
+
+                    </select>
+
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="status">status</label>
+
+                    <div class="input-group input-group-sm">
+                        @if ($personale->status == 1)
+                        <div class="alert alert-primary" role="alert">
+                            Active
+                        </div>
+
+
+                        @else
+                        <div class="alert alert-danger" role="alert">
+                            Inactive
+                        </div>
+                        @endif
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="marital_status">marital_status</label>
+
+                    <select name="marital_status" id="marital_status" required
+                        class="form-control form-control-sm {{ $errors->has('marital_status') ? ' is-invalid' : '' }}"
+                        disabled>
+
+                        @if ($personale->marital_status == 1)
+                        <option class="dropup" value="1" selected>Single</option>
+                        @else
+                        <option class="dropup" value="0" selected>Maried</option>
+                        @endif
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <fieldset class="border p-2">
+                    <legend class="w-auto">Contact Details</legend>
+                    <div class="form-group">
+                        <label class="control-label" for="zone">zone</label>
+                        <div class="input-group input-group-sm">
+                            <input name="zone" type="text" id="zone"
+                                class="form-control  {{ $errors->has('zone') ? ' is-invalid' : '' }}"
+                                value="{{old('zone') ?? $personale->zone}}" disabled>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="woreda">woreda</label>
+                        <div class="input-group input-group-sm">
+                            <input name="woreda" type="text" id="woreda"
+                                class="form-control  {{ $errors->has('woreda') ? ' is-invalid' : '' }}"
+                                value="{{old('woreda') ?? $personale->woreda}}" disabled>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="city">city</label>
+                            <div class="input-group input-group-sm">
+                                <input name="city" type="text" id="city"
+                                    class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}"
+                                    value="{{old('city') ?? $personale->city}}" disabled>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="sub_city">sub_city</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="sub_city" type="text" id="sub_city"
+                                        class="form-control  {{ $errors->has('sub_city') ? ' is-invalid' : '' }}"
+                                        value="{{old('sub_city') ?? $personale->sub_city}}" disabled>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="kebele">kebele</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="kebele" type="text" id="kebele"
+                                        class="form-control  {{ $errors->has('kebele') ? ' is-invalid' : '' }}"
+                                        value="{{old('kebele') ?? $personale->kebele}}" disabled>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="housenumber">housenumber</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="housenumber" type="text" id="housenumber"
+                                        class="form-control  {{ $errors->has('housenumber') ? ' is-invalid' : '' }}"
+                                        value="{{old('housenumber') ?? $personale->housenumber}}" disabled>
+
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="mobile">mobile</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="mobile" type="text" id="mobile"
+                                        class="form-control  {{ $errors->has('mobile') ? ' is-invalid' : '' }}"
+                                        value="{{old('mobile') ?? $personale->mobile}}" disabled>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="home_telephone">home_telephone</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="home_telephone" type="text" id="home_telephone"
+                                        class="form-control  {{ $errors->has('home_telephone') ? ' is-invalid' : '' }}"
+                                        value="{{old('home_telephone') ?? $personale->home_telephone}}" disabled>
+
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="work_telephone">work_telephone</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="work_telephone" type="text" id="work_telephone"
+                                        class="form-control  {{ $errors->has('work_telephone') ? ' is-invalid' : '' }}"
+                                        value="{{old('work_telephone') ?? $personale->work_telephone}}" disabled>
+
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="email">email</label>
+                                <div class="input-group input-group-sm">
+                                    <input name="email" type="text" id="email"
+                                        class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                        value="{{old('email') ?? $personale->email}}" disabled>
+
+
+                                </div>
+
+                            </div>
+                </fieldset>
+
                 <div class="row">
-
-
                     <div class='col-3'>
                         <a href="{{route('personale.edit',$personale->id)}}" class="btn btn-info btn-sm"> <i
                                 class="fas fa-edit"></i> Edit </a>
@@ -149,7 +334,8 @@
                     @if ($personale->status == 1)
                     <div class='col-4 ml-1 p-1'>
                         <a href="{{route('personale.deactivate',$personale->id)}}"
-                            class="btn btn-el btn-outline-primary ml-auto btn-sm"> <i class="fa fa-edit"></i> Deactivate
+                            class="btn btn-el btn-outline-primary ml-auto btn-sm"> <i class="fa fa-edit"></i>
+                            Deactivate
                         </a>
                     </div>
 
@@ -164,9 +350,149 @@
             </div>
 
 
+
+        </div>
+
+    </div>
+
+</section>
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container">
+        <div class="row bg-white has-shadow">
+            <div class="d-flex align-items-center">
+                <h4>All Dependants </h4>
+                {{-- @can('customer create') --}}
+
+                <div class="ml-auto">
+                    <a href="{{route('employees_dependant.create', $personale->id)}}"
+                        class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add Dependants</a>
+
+                </div>
+                {{-- @endcan --}}
+            </div>
+
+
+            @if ($emergency_dependant->count() > 0)
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Relashihip</th>
+                        <th scope="col">relashiship type</th>
+                        <th scope="col">Birth Date</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($emergency_dependant as $item)
+                    <tr>
+                        <th scope="row">{{$item->id}}</th>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->relationship}}</td>
+                        <td>{{$item->relationship_type}}</td>
+                        <td>{{$item->date_of_birth}}</td>
+                        <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
+                            <a href="{{route('employees_dependant.edit', $item->id)}}"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class='p-1 text-center'>
+                            <form method="POST" action="{{route('employees_dependant.destroy', $item->id)}}"
+                                id="deactivate-form-{{$item->id}}" style="display: none">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <button class="btn btn-sm" type="submit" onclick="if(confirm('Are you sure to delete this? if your answer is yes you don\'t restore it. ')){
+                            event.preventDefault();
+                            document.getElementById('deactivate-form-{{$item->id}}').submit();
+                                }else{
+                                    event.preventDefault();
+                                }"> <i class="fas fa-trash red"></i>
+
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
+            @endif
+
         </div>
     </div>
-</div>
+</section>
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container">
+        <div class="row bg-white has-shadow">
+            <div class="d-flex align-items-center">
+                <h4>All Emergency Contact </h4>
+                {{-- @can('customer create') --}}
+
+                <div class="ml-auto">
+                    <a href="{{route('emergence_contact.create', $personale->id)}}"
+                        class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add Emergency contact</a>
+
+                </div>
+                {{-- @endcan --}}
+            </div>
+
+
+            @if ($emergency_dependant->count() > 0)
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Relashihip</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Home Telephone</th>
+                        <th scope="col">Work Telephone</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if ($customers->count()> 0)
+                    @foreach ($emergency_contact as $ec)
+                    <tr>
+                        <th scope="row">{{$ec->id}}</th>
+                        <td>{{$ec->name}}</td>
+                        <td>{{$ec->relationship}}</td>
+                        <td>{{$ec->mobile}}</td>
+                        <td>{{$ec->home_telephone}}</td>
+                        <td>{{$ec->work_telephone}}</td>
+                        <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
+                            <a href="{{route('emergence_contact.edit', $ec->id)}}"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class='p-1 text-center'>
+                            <form method="POST" action="{{route('emergence_contact.destroy', $ec->id)}}"
+                                id="deactivate-form-{{$ec->id}}" style="display: none">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <button class="btn btn-sm" type="submit" onclick="if(confirm('Are you sure to delete this? if your answer is yes you don\'t restore it. ')){
+                            event.preventDefault();
+                            document.getElementById('deactivate-form-{{$ec->id}}').submit();
+                                }else{
+                                    event.preventDefault();
+                                }"> <i class="fas fa-trash red"></i>
+
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td class='m-1 p-1 text-center' colspan="12">No Data Avilable</td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
+            @endif
+
+        </div>
+    </div>
+</section>
 <!-- Button trigger modal -->
 
 <!-- Modal -->

@@ -45,6 +45,11 @@
         <li><a href="{{ route('job_type.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Job Type</a>
         </li>
 
+
+        <span class="heading">HRM</span>
+        <li><a href="{{ route('personale.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Personale </a>
+        <li><a href="{{ route('department.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Department
+            </a>
+        </li>
     </ul>
-    <span class="heading">Operation</span>
 </nav>

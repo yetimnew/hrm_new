@@ -13,12 +13,12 @@
         <div class="card-header">
             <div class="d-flex align-items-center">
                 <h2>Personale Update <strong class="blue">{{$personale->name}}</strong></h2>
-                @can('driver edit')
+                {{-- @can('driver edit') --}}
                 <div class="ml-auto">
-                    <a href="{{route('personale.index')}}" class="btn btn-outline-primary">
+                    <a href="{{route('personale.show',$personale->id)}}" class="btn btn-outline-primary">
                         <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
                 </div>
-                @endcan
+                {{-- @endcan --}}
             </div>
 
         </div>

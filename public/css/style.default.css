@@ -58,7 +58,7 @@ canvas {
 }
 
 header.page-header {
-    padding: 20px 0;
+    padding: 5px 0;
 }
 
 table {
@@ -1016,7 +1016,7 @@ section.dashboard-counts .number strong {
 }
 
 section.dashboard-counts .row {
-    padding: 10px 5px;
+    padding: 4px 4px;
     margin: 0;
 }
 

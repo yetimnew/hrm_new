@@ -76,10 +76,7 @@ class DepartementsController extends Controller
     public function destroy($id)
     {
         $department = Department::findOrFail($id);
-        // dd($department);
         $department->delete();
-        Session::flash('success',  $department->name . ' Deleted successfully');
-        // return redirect()->back();
-        return response()->json(['success' => 'department deleted sucessfuly']);
+        return response()->json(['success' => 'department deleted successfully']);
     }
 }

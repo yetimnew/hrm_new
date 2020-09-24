@@ -23,6 +23,7 @@ class Personale extends Model
         'driver',
         'department_id',
         'position_id',
+        'employment_status',
         'status'
     ];
     // public function getSexAttribute($attribute)
@@ -32,6 +33,13 @@ class Personale extends Model
     //         0 => "Female"
     //     ][$attribute];
     // }
+    // public function getEmploymentStatusAttribute($attribute)
+    // {
+    //     return [
+    //         1 => "Permanent",
+    //         0 => "Contract"
+    //     ];
+    // }
 
     public function scopeActive($query)
     {
@@ -40,6 +48,14 @@ class Personale extends Model
     public function scopeInactive($query)
     {
         return $query->where('status', 0);
+    }
+    public function scopePermanent($query)
+    {
+        return $query->where('employment_status', 1);
+    }
+    public function scopeContract($query)
+    {
+        return $query->where('employment_status', 0);
     }
     public function scopeDriver($query)
     {

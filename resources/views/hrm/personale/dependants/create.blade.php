@@ -9,14 +9,14 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home')}}">Home</a>
             </li>
-            <li class="breadcrumb-item active">Employee Registration</li>
+            <li class="breadcrumb-item active">Employee Dependants Registration</li>
         </ol>
     </nav>
     <div class="card text-left">
         <div class="card-header">
 
             <div class="d-flex align-items-center">
-                <h4>Employee Registration</h4>
+                <h4>Employee Dependants Registration</h4>
                 {{-- <!-- @can('driver create') --> --}}
                 <div class="ml-auto">
                     <a href="{{route('personale.index')}}" class="btn btn-outline-primary btn-sm">
@@ -28,10 +28,31 @@
         </div>
         <div class="card-body">
 
-            <form method="post" action="{{route('personale.store')}}" class="form-horizontal" id="driver_reg"
-                novalidate>
+            <form method="POST" action="{{route('employees_dependant.store')}}" class="form-horizontal" id="driver_reg">
                 @csrf
-                @include('hrm.personale.form')
+                {{-- @method('HEAD') --}}
+                <div class="form-group">
+                    <label class="control-label" for="personale_id">Employee ID</label>
+                    <div class="input-group input-group-sm">
+                        <input name="personale_id" type="text" id="personale_id" class="form-control"
+                            value="{{$employee->driverid}}" disabled>
+
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="personale_id">Employee Full Name</label>
+                    <div class="input-group input-group-sm">
+                        <input name="personale_id" type="text" id="personale_id" class="form-control"
+                            value="{{$employee->fullname}}" disabled>
+
+
+                    </div>
+
+                </div>
+                <input name="personale_id" type="hidden" id="personale_id" value="{{$employee->id}}">
+                @include('hrm.personale.dependants.form')
         </div>
     </div>
     <div class="d-flex align-items-center mt-4">

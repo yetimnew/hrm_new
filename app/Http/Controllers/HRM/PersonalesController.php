@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\HRM;
 
 use App\HRM\Department;
+use App\HRM\EmployeesDependant;
+use App\HRM\EmployeesEmergencyContact;
 use App\Http\Controllers\Controller;
 use App\HRM\Personale;
 use App\HRM\Position;
@@ -35,57 +37,76 @@ class PersonalesController extends Controller
     {
         // dd($request->all());
         $this->validate($request, [
-
-            'did' =>  'required|unique:personales,driverid',
+            'driverid' =>  'required|unique:personales,driverid',
             'firstname' =>  'required|min:2',
             'fathername' =>  'required||min:2',
             'gfathername' =>  'required||min:2',
             'sex' => 'required',
+            'birthdate' =>  'required|date',
+            'hireddate' =>  'required|date',
             'driver' => 'required',
-            'bdate' =>  'required|date',
-            'zone' =>  'required',
-            'woreda' =>  'required',
-            'kebele' =>  'required',
-            'hn' =>  'required',
-            'mob' =>  'required',
-            'hd' =>  'required|date',
-            'department' =>  'required',
-            'job' =>  'required',
+            'department_id' =>  'required',
+            'position_id' =>  'required',
+            'employment_status' =>  'required',
+            'marital_status' =>  'required',
+            'zone' =>  '',
+            'woreda' =>  '',
+            'city' =>  '',
+            'sub_city' =>  '',
+            'kebele' =>  '',
+            'housenumber' =>  '',
+            'mobile' =>  '',
+            'home_telephone' =>  '',
+            'work_telephone' =>  '',
+            'email' =>  '',
 
         ]);
 
         $personale = new Personale;
-        $personale->driverid = $request->did;
+        $personale->driverid = $request->driverid;
         $personale->firstname = $request->firstname;
         $personale->fathername = $request->fathername;
         $personale->gfathername = $request->gfathername;
         $personale->sex = $request->sex;
-        $personale->birthdate = $request->bdate;
+        $personale->birthdate = $request->birthdate;
+        $personale->hireddate = $request->hireddate;
+        $personale->driver = $request->driver;
+        $personale->department_id = $request->department_id;
+        $personale->position_id = $request->position_id;
+        $personale->employment_status = $request->employment_status;
+        $personale->marital_status = $request->marital_status;
         $personale->zone = $request->zone;
         $personale->woreda = $request->woreda;
+        $personale->city = $request->city;
+        $personale->sub_city = $request->sub_city;
         $personale->kebele = $request->kebele;
-        $personale->housenumber = $request->hn;
-        $personale->mobile = $request->mob;
-        $personale->hireddate = $request->hd;
-        $personale->driver = $request->driver;
-        $personale->department_id = $request->department;
-        $personale->position_id = $request->job;
+        $personale->housenumber = $request->housenumber;
+        $personale->mobile = $request->mobile;
+        $personale->home_telephone = $request->home_telephone;
+        $personale->work_telephone = $request->work_telephone;
+        $personale->email = $request->email;
+
+
         $personale->save();
 
-        Session::flash('success',  $personale->driverid .  ' registerd successfuly');
+        Session::flash('success', 'Employee registered successfully');
         return redirect()->route('personale.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $personale = Personale::findOrFail($id);
+        $departments = Department::all();
+        $positions = Position::all();
+        $emergency_dependant = EmployeesDependant::where('personale_id', $personale->id)->get();
+        $emergency_contact = EmployeesEmergencyContact::where('personale_id', $personale->id)->get();
+        // dd($emergency_dependant);
+
         return view('hrm.personale.show')
+            ->with('departments', $departments)
+            ->with('positions', $positions)
+            ->with('emergency_dependant', $emergency_dependant)
+            ->with('emergency_contact', $emergency_contact)
             ->with('personale', $personale);
     }
 
@@ -103,43 +124,58 @@ class PersonalesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'did' =>  'required',
-            'firstname' =>  'required',
-            'fathername' =>  'required',
-            'gfathername' =>  'required',
+            'driverid' =>  'required',
+            'firstname' =>  'required|min:2',
+            'fathername' =>  'required||min:2',
+            'gfathername' =>  'required||min:2',
             'sex' => 'required',
+            'birthdate' =>  'required|date',
+            'hireddate' =>  'required|date',
             'driver' => 'required',
-            'bdate' =>  'required',
-            'zone' =>  'required',
-            'woreda' =>  'required',
-            'kebele' =>  'required',
-            'hn' =>  'required',
-            'mob' =>  'required',
-            'hd' =>  'required',
-            'department' =>  'required',
-            'job' =>  'required',
+            'department_id' =>  'required',
+            'position_id' =>  'required',
+            'employment_status' =>  'required',
+            'marital_status' =>  'required',
+            'zone' =>  '',
+            'woreda' =>  '',
+            'city' =>  '',
+            'sub_city' =>  '',
+            'kebele' =>  '',
+            'housenumber' =>  '',
+            'mobile' =>  '',
+            'home_telephone' =>  '',
+            'work_telephone' =>  '',
+            'email' =>  '',
         ]);
 
+
         $personale = Personale::findOrFail($id);
-        $personale->driverid = $request->did;
+        $personale->driverid = $request->driverid;
         $personale->firstname = $request->firstname;
         $personale->fathername = $request->fathername;
         $personale->gfathername = $request->gfathername;
         $personale->sex = $request->sex;
-        $personale->birthdate = $request->bdate;
+        $personale->birthdate = $request->birthdate;
+        $personale->hireddate = $request->hireddate;
+        $personale->driver = $request->driver;
+        $personale->department_id = $request->department_id;
+        $personale->position_id = $request->position_id;
+        $personale->employment_status = $request->employment_status;
+        $personale->marital_status = $request->marital_status;
         $personale->zone = $request->zone;
         $personale->woreda = $request->woreda;
+        $personale->city = $request->city;
+        $personale->sub_city = $request->sub_city;
         $personale->kebele = $request->kebele;
-        $personale->housenumber = $request->hn;
-        $personale->mobile = $request->mob;
-        $personale->hireddate = $request->hd;
-        $personale->driver = $request->driver;
-        $personale->department_id = $request->department;
-        $personale->position_id = $request->job;
+        $personale->housenumber = $request->housenumber;
+        $personale->mobile = $request->mobile;
+        $personale->home_telephone = $request->home_telephone;
+        $personale->work_telephone = $request->work_telephone;
+        $personale->email = $request->email;
 
         $personale->save();
-        Session::flash('success',  $personale->driverid . ' updated successfuly');
-        return redirect()->route('personale.index');
+        Session::flash('success',  $personale->driverid . ' updated successfully');
+        return redirect()->route('personale.show', $personale->id);
     }
 
 
@@ -147,7 +183,7 @@ class PersonalesController extends Controller
     {
         $personale = Personale::findOrFail($id);
         $personale->delete();
-        Session::flash('success',  $personale->driverid . ' Deleted successfuly');
+        Session::flash('success',  $personale->driverid . ' Deleted successfully');
         return redirect()->route('personale.index');
     }
     public function deactivate($id)
@@ -165,8 +201,8 @@ class PersonalesController extends Controller
         $personale->comment = $request->comment;
 
         $personale->save();
-        Session::flash('success',  $personale->driverid . ' Deactivated successfuly');
-        return redirect()->route('personale.index');
+        Session::flash('success',  $personale->driverid . ' Deactivated successfully');
+        return redirect()->route('personale.show', $personale->id);
     }
     public function activate($id)
     {
@@ -175,7 +211,10 @@ class PersonalesController extends Controller
         $personale->status = 1;
 
         $personale->save();
-        Session::flash('success',  $personale->driverid . ' Activated successfuly');
-        return redirect()->route('personale.index');
+        Session::flash('success',  $personale->driverid . ' Activated successfully');
+        return redirect()->route('personale.show', $personale->id);
+    }
+    public function contact_details()
+    {
     }
 }
