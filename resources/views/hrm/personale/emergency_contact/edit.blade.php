@@ -14,37 +14,38 @@
             <div class="d-flex align-items-center">
                 {{-- <h2>Personale Update <strong class="blue">{{$emergency_contact->name}}</strong></h2> --}}
                 {{-- @can('driver edit') --}}
-                {{-- <div class="ml-auto">
-                    <a href="{{route('personale.show',$employees_dependant->id)}}" class="btn btn-outline-primary">
-                <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
-            </div> --}}
-            {{-- @endcan --}}
+                <div class="ml-auto">
+                    <a href="{{route('personale.show',$emergency_contact->personale_id)}}"
+                        class="btn btn-outline-primary">
+                        <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
+                </div>
+                {{-- @endcan --}}
+            </div>
         </div>
 
-    </div>
-    <div class="card-body">
-        <form method="post" action="{{route('emergence_contact.update',$emergency_contact->id)}}"
-            class="form-horizontal" id="driver_reg" novalidate>
-            @csrf
-            @method('PATCH')
-            <input name="personale_id" type="hidden" id="personale_id" value="{{$employee->id}}">
-            @include('hrm.personale.emergency_contact.form')
+        <div class="card-body">
+            <form method="post" action="{{route('emergence_contact.update',$emergency_contact->id)}}"
+                class="form-horizontal" id="driver_reg" novalidate>
+                @csrf
+                @method('PATCH') ==
+                <input name="personale_id" type="hidden" id="personale_id" value="{{$employee->id}}">
+                @include('hrm.personale.emergency_contact.form')
 
-            <div class="form-group d-flex  required">
+                <div class="form-group d-flex  required">
 
-                <div class="ml-auto">
-                    <button type="submit" class="btn btn-el btn-outline-primary ml-auto" name="save">
-                        Save update</button>
+                    <div class="ml-auto">
+                        <button type="submit" class="btn btn-el btn-outline-primary ml-auto" name="save">
+                            Save update</button>
+                    </div>
+
                 </div>
-
-            </div>
+        </div>
     </div>
-</div>
 
-<div class="card-footer">
+    <div class="card-footer">
 
-</div>
-</form>
+    </div>
+    </form>
 </div>
 </div>
 </div>

@@ -24,7 +24,7 @@
         </div>
         <div class="card-body">
             <form method="post" action="{{route('personale.update',$personale->id)}}" class="form-horizontal"
-                id="driver_reg" novalidate>
+                id="driver_reg" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 @include('hrm.personale.form')

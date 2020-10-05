@@ -4,8 +4,10 @@ namespace App\HRM;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Personale extends Model
 {
+
     protected $fillable = [
         'id',
         'driverid',
@@ -26,6 +28,23 @@ class Personale extends Model
         'employment_status',
         'status'
     ];
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(368)
+            ->height(232)
+            ->sharpen(10);
+    }
+    // protected $appends = ['image'];
+    // public function getimageAttribute(){
+    //     $image = $this->getMedia('image')->first();
+
+    //     if($image){
+    //             return $image->getPath();
+    //             }
+
+    // }
     // public function getSexAttribute($attribute)
     // {
     //     return [

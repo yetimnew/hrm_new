@@ -84,15 +84,12 @@ class EmployeesEmergencyContactController extends Controller
         // dd($request->all());
         $emergency_contact = EmployeesEmergencyContact::findOrFail($id);
         $this->validate($request, [
-
             'personale_id' =>  'required',
             'name' =>  'required',
             'relationship' =>  'required',
             'mobile' =>  'required',
             'home_telephone' =>  'required',
             'work_telephone' =>  'required',
-
-
         ]);
         // $emergency_contact = EmployeesDependant::findOrFail($id);
         $emergency_contact->personale_id = $request->personale_id;

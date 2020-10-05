@@ -27,8 +27,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/personale/activate/{id}',                 ['uses' => 'PersonalesController@activate', 'as' => 'personale.activate']);
         Route::resource('personale', 'PersonalesController');
         Route::resource('department', 'DepartementsController');
-        Route::resource('personale', 'PersonalesController');
-
+        Route::resource('branch', 'BranchesController');
+        Route::resource('job_title', 'JobTitleController');
 
         Route::get('employees_dependant/create/{id}', 'EmployeesDependantsContactController@create')->name('employees_dependant.create');
         Route::POST('employees_dependant/store',      'EmployeesDependantsContactController@store')->name('employees_dependant.store');
@@ -41,6 +41,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('emergence_contact/edit/{id}',      'EmployeesEmergencyContactController@edit')->name('emergence_contact.edit');
         Route::patch('/emergence_contact/update/{id}',       'EmployeesEmergencyContactController@update')->name('emergence_contact.update');
         Route::DELETE('/emergence_contact/destroy/{id}',       'EmployeesEmergencyContactController@destroy')->name('emergence_contact.destroy');
+
+        Route::get('experience/create/{id}', 'WorkExperianceController@create')->name('experience.create');
+        Route::POST('experience/store',      'WorkExperianceController@store')->name('experience.store');
+        Route::get('experience/edit/{id}',      'WorkExperianceController@edit')->name('experience.edit');
+        Route::patch('/experience/update/{id}',       'WorkExperianceController@update')->name('experience.update');
+        Route::DELETE('/experience/destroy/{id}',       'WorkExperianceController@destroy')->name('experience.destroy');
+
+        Route::get('education/create/{id}', 'EducationController@create')->name('education.create');
+        Route::POST('education/store',      'EducationController@store')->name('education.store');
+        Route::get('education/edit/{id}',      'EducationController@edit')->name('education.edit');
+        Route::patch('/education/update/{id}',       'EducationController@update')->name('education.update');
+        Route::DELETE('/education/destroy/{id}',       'EducationController@destroy')->name('education.destroy');
+
+        // Route::resource('education', 'EducationController')->except('index');
     });
 });
 Route::prefix('admin')->namespace('Admin')->group(function () {

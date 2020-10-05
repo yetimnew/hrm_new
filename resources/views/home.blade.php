@@ -76,8 +76,6 @@
                     <div class="number">
                         <strong>
                             23,327.00 </strong>
-
-
                     </div>
                 </div>
             </div>

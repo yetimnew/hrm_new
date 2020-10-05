@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\HRM;
 
 use App\HRM\Department;
+use App\HRM\Education;
 use App\HRM\EmployeesDependant;
 use App\HRM\EmployeesEmergencyContact;
 use App\Http\Controllers\Controller;
 use App\HRM\Personale;
 use App\HRM\Position;
+use App\HRM\WorkExperiance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Image;
 
 class PersonalesController extends Controller
 {
@@ -59,10 +62,12 @@ class PersonalesController extends Controller
             'home_telephone' =>  '',
             'work_telephone' =>  '',
             'email' =>  '',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
 
-        $personale = new Personale;
+
+        $personale = new Personale();
         $personale->driverid = $request->driverid;
         $personale->firstname = $request->firstname;
         $personale->fathername = $request->fathername;
@@ -85,8 +90,16 @@ class PersonalesController extends Controller
         $personale->home_telephone = $request->home_telephone;
         $personale->work_telephone = $request->work_telephone;
         $personale->email = $request->email;
-
-
+        if ($request->hasFile('image')) {
+            $image       = $request->file('image');
+            $filename    = time() . $image->getClientOriginalName();
+            //Fullsize
+            $image->move(public_path() . '/images/user_image/', $filename);
+            $image_resize = Image::make(public_path() . '/images/user_image/' . $filename);
+            $image_resize->fit(300, 300);
+            $image_resize->save(public_path('images/thumbnail/' . $filename));
+            $personale->image =  $filename;
+        }
         $personale->save();
 
         Session::flash('success', 'Employee registered successfully');
@@ -100,13 +113,17 @@ class PersonalesController extends Controller
         $positions = Position::all();
         $emergency_dependant = EmployeesDependant::where('personale_id', $personale->id)->get();
         $emergency_contact = EmployeesEmergencyContact::where('personale_id', $personale->id)->get();
-        // dd($emergency_dependant);
+        $experiences = WorkExperiance::where('personale_id', $personale->id)->get();
+        $educations = Education::where('personale_id', $personale->id)->get();
+
 
         return view('hrm.personale.show')
             ->with('departments', $departments)
             ->with('positions', $positions)
             ->with('emergency_dependant', $emergency_dependant)
             ->with('emergency_contact', $emergency_contact)
+            ->with('experiences', $experiences)
+            ->with('educations', $educations)
             ->with('personale', $personale);
     }
 
@@ -123,6 +140,7 @@ class PersonalesController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request, [
             'driverid' =>  'required',
             'firstname' =>  'required|min:2',
@@ -147,9 +165,9 @@ class PersonalesController extends Controller
             'work_telephone' =>  '',
             'email' =>  '',
         ]);
-
-
         $personale = Personale::findOrFail($id);
+
+
         $personale->driverid = $request->driverid;
         $personale->firstname = $request->firstname;
         $personale->fathername = $request->fathername;
@@ -173,7 +191,21 @@ class PersonalesController extends Controller
         $personale->work_telephone = $request->work_telephone;
         $personale->email = $request->email;
 
+
+        if ($request->hasFile('image')) {
+            // dd($image);
+            $image = $request->file('image');
+            $filename    = time() . $image->getClientOriginalName();
+            $image->move(public_path() . '/images/user_image/', $filename);
+            $image_resize = Image::make(public_path() . '/images/user_image/' . $filename);
+            $image_resize->fit(300, 300);
+            $image_resize->save(public_path('images/thumbnail/' . $filename));
+            unlink(public_path() .  '/images/user_image/' . $personale->image);
+            unlink(public_path() .  '/images/thumbnail/' . $personale->image);
+            $personale->image =  $filename;
+        }
         $personale->save();
+
         Session::flash('success',  $personale->driverid . ' updated successfully');
         return redirect()->route('personale.show', $personale->id);
     }
@@ -183,6 +215,11 @@ class PersonalesController extends Controller
     {
         $personale = Personale::findOrFail($id);
         $personale->delete();
+        if ($personale->image) {
+            unlink(public_path() .  '/images/user_image/' . $personale->image);
+            unlink(public_path() .  '/images/thumbnail/' . $personale->image);
+        }
+
         Session::flash('success',  $personale->driverid . ' Deleted successfully');
         return redirect()->route('personale.index');
     }

@@ -29,7 +29,7 @@
         <div class="card-body">
 
             <form method="post" action="{{route('personale.store')}}" class="form-horizontal" id="driver_reg"
-                novalidate>
+                enctype="multipart/form-data">
                 @csrf
                 @include('hrm.personale.form')
         </div>

@@ -27,9 +27,10 @@ class EmployeesDependantsContactController extends Controller
      */
     public function create($id)
     {
+
+        // dd($id);
         $employees_dependant = new EmployeesDependant;
         $employee = Personale::findOrFail($id);
-        // dd($employee);
 
         return view('hrm.personale.dependants.create')
 

@@ -49,6 +49,7 @@
         <span class="heading">HRM</span>
         <li><a href="{{ route('personale.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Personale </a>
         <li><a href="{{ route('department.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Department
+        <li><a href="{{ route('branch.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Branch
             </a>
         </li>
     </ul>

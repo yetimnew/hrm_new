@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="form-group 	required">
-            <label class="control-label">Driver ID</label>
+            <label class="control-label"> ID Number</label>
             <div class="input-group-sm">
                 <input name="driverid" type="text" id="driverid"
                     class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
@@ -140,11 +140,7 @@
             </select>
         </div>
     </div>
-
-
     <div class="col-lg-4 col-md-6 col-sm-12">
-
-
         <div class="form-group  required">
             <label class="control-label" for="department_id">Department Name</label>
             <div class="input-group-sm">
@@ -195,22 +191,16 @@
         </div>
 
         <div class="form-group required">
-            <label class="control-label" for="employment_status">employment_status</label>
+            <label class="control-label m-2" for="employment_status">employment_status</label> <br>
 
-            <select name="employment_status" id="employment_status" required
-                class="form-control form-control-sm {{ $errors->has('employment_status') ? ' is-invalid' : '' }}"
-                onfocusout="validatedepartment()">
-
-                @if ($personale->employment_status == 1)
-                <option class="dropup" value="1" selected>Permanent</option>
-                <option class="dropup" value="0">Contract</option>
-                @else
-                <option class="dropup" value="0" selected>Contract</option>
-                <option class="dropup" value="1">Permanent</option>
-                @endif
-
-
-            </select>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="permanenet" name="employment_status" class="custom-control-input" value="1">
+                <label class="custom-control-label" for="permanenet">Permanenet</label>
+            </div>
+            <div class=" custom-control custom-radio custom-control-inline">
+                <input type="radio" id="contract" name="employment_status" class="custom-control-input" value="0">
+                <label class="custom-control-label" for="contract" onclick="myFunction()">Contract</label>
+            </div>
 
             @if ($errors->has('employment_status'))
             <span class="invalid-feedback" role="alert">
@@ -218,6 +208,11 @@
             </span>
             @endif
             <span class="invalid-feedback" role="alert"></span>
+        </div>
+        <div class="form-group" id="employment_status_div" style="display: none">
+            <label for=""></label>
+            <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+            <small id="helpId" class="text-muted">Help text</small>
         </div>
         <div class="form-group required">
             <label class="control-label" for="marital_status">marital_status</label>
@@ -233,8 +228,6 @@
                 <option class="dropup" value="0" selected>Maried</option>
                 <option class="dropup" value="1">Single</option>
                 @endif
-
-
             </select>
 
             @if ($errors->has('marital_status'))
@@ -244,6 +237,29 @@
             @endif
             <span class="invalid-feedback" role="alert"></span>
         </div>
+        <div class="form-group required">
+            <label class="control-label" for="image">Image</label>
+            @if($personale->image)
+            <img id="original" src="{{ url('/images/thumbnail/'.$personale->image) }}" height="70" width="70">
+            @endif
+            <div class="input-group input-group-sm">
+
+                <input name="image" type="file" id="image"
+                    class="form-control  {{ $errors->has('image') ? ' is-invalid' : '' }}"
+                    value="{{ $personale->image}}" onfocusout="validateimage()">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-calendar"
+                            aria-hidden="true"></i></span>
+                </div>
+                @if ($errors->has('image'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('image') }}</strong>
+                </span>
+                @endif
+                <span class="invalid-feedback" role="alert"></span>
+            </div>
+        </div>
+
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
         <fieldset class="border p-2">
@@ -428,5 +444,15 @@
             // format: "YYYY-MM-DD H:mm a"
 
         });
+        function myFunction() {
+            // alert();
+  var contract = document.getElementById("contract");
+
+//   console.log(contract.value)
+  var text = document.getElementById("employment_status_div");
+  if (contract.value == 0){
+    text.style.display = "block";
+  }
+}
         </script>
         @endsection

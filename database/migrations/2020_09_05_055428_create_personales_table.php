@@ -37,13 +37,14 @@ class CreatePersonalesTable extends Migration
             $table->string('email')->nullable();
 
             $table->unsignedBigInteger('department_id')->index();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('restrict');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
             $table->unsignedBigInteger('position_id')->index();
-            $table->foreign('position_id')->references('id')->on('positions')->onDelete('restrict');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
 
             $table->boolean('employment_status')->default(1);
             $table->boolean('marital_status')->default(0);
+            $table->text('image')->default(0);
             $table->boolean('status')->default(0);
             $table->text('comment')->nullable();
             $table->softDeletes();

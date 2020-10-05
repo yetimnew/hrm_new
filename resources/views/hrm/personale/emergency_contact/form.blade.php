@@ -2,7 +2,6 @@
 
     <div class="col-lg-12 col-md-12 col-sm-12">
         {{-- {{dd($employee)}} --}}
-
         {{-- <input name="personale_id" type="hidden" id="personale_id" value="{{$employee->id}}"> --}}
         <div class="form-group">
             <label class="control-label" for="name"> Name</label>
@@ -18,10 +17,7 @@
                 @endif
                 <span class="invalid-feedback" role="alert"></span>
             </div>
-
         </div>
-
-
         <div class="form-group">
             <label class="control-label" for="relationship">relationship</label>
             <div class="input-group input-group-sm">
@@ -29,7 +25,7 @@
                     class="form-control  {{ $errors->has('relationship') ? ' is-invalid' : '' }}"
                     value="{{old('relationship') ?? $emergency_contact->relationship}}"
                     onfocusout="validaterelationship()">
-
+                >=
                 @if ($errors->has('relationship'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('relationship') }}</strong>
@@ -45,7 +41,6 @@
                 <input name="mobile" type="text" id="mobile"
                     class="form-control  {{ $errors->has('mobile') ? ' is-invalid' : '' }}"
                     value="{{old('mobile') ?? $emergency_contact->mobile}}" onfocusout="validatemobile()">
-
                 @if ($errors->has('mobile'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('mobile') }}</strong>
@@ -87,10 +82,7 @@
                 @endif
                 <span class="invalid-feedback" role="alert"></span>
             </div>
-
         </div>
-
-
         @section('scripts')
         <script>
             $("#date_of_birth").datetimepicker({
