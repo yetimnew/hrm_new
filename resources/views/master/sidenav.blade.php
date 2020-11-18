@@ -20,7 +20,7 @@
     <!-- Sidebar Navidation Menus-->
     <span class="heading">Main</span>
     <ul>
-        <li><a href="#">Maintenance</a></li>
+        {{-- <li><a href="#">Maintenance</a></li>
 
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-truck"
                     aria-hidden="true"></i> Trucks
@@ -44,13 +44,26 @@
         </li>
         <li><a href="{{ route('job_type.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Job Type</a>
         </li>
+        <li><a href="{{ route('open_job_card.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Open Job
+                Card</a>
+        </li> --}}
 
 
         <span class="heading">HRM</span>
         <li><a href="{{ route('personale.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Personale </a>
+        </li>
         <li><a href="{{ route('department.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Department
-        <li><a href="{{ route('branch.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Branch
             </a>
+        </li>
+        <li><a href="{{ route('branch.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Branch</a></li>
+        <li><a href="{{ route('pay_grade.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Pay Grade</a>
+        </li>
+        <li><a href="{{ route('pay_grade_level.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Pay
+                Grade Level</a>
+        </li>
+        <li><a href="{{ route('job_title.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Job title</a>
+        </li>
+        <li><a href="{{ route('promotion.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Promotion </a>
         </li>
     </ul>
 </nav>

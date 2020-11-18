@@ -14,7 +14,6 @@
                 @endif
                 <span class="invalid-feedback" role="alert"></span>
             </div>
-
         </div>
 
         <div class="form-group">
@@ -31,23 +30,6 @@
                 @endif
                 <span class="invalid-feedback" role="alert"></span>
             </div>
-
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="institute">Institute</label>
-            <div class="input-group input-group-sm">
-                <input name="institute" type="text" id="institute"
-                    class="form-control  {{ $errors->has('institute') ? ' is-invalid' : '' }}"
-                    value="{{old('institute') ?? $education->institute}}" onfocusout="validateinstitute()">
-
-                @if ($errors->has('institute'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('institute') }}</strong>
-                </span>
-                @endif
-                <span class="invalid-feedback" role="alert"></span>
-            </div>
-
         </div>
         <div class="form-group">
             <label class="control-label" for="minor">minor</label>

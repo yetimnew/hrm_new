@@ -10,6 +10,8 @@ class JobTitle extends Model
     protected $fillable = [
         'id',
         'name',
+        'department_id',
+        'given_number',
         'job_description',
         'status'
     ];
@@ -17,4 +19,12 @@ class JobTitle extends Model
     {
         return $this->hasMany('App\HRM\Personale');
     }
+    public function department()
+    {
+        return $this->belongsTo('App\HRM\Department');
+    }
+    // public function personales()
+    // {
+    //     return $this->hasMany('App\HRM\Personale');
+    // }
 }

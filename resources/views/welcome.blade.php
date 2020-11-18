@@ -1,5 +1,4 @@
 @extends('master.auth')
-
 @section('content')
 <div class="page login-page">
     <div class="container d-flex align-items-center">
@@ -14,7 +13,6 @@
                                         class="img-fluid" width="300" height="300">
                                 </div>
                                 <div class="title">
-
                                     <br>
                                     <h3 class="text-center">TRANSPORT INFORMATION MANGMENT SYSTEM(TIMS)</h3>
                                     <br>
@@ -25,7 +23,6 @@
 
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -15,4 +15,8 @@ class Department extends Model
     {
         return $this->hasMany('App\HRM\Personale');
     }
+    public function jobtitle()
+    {
+        return $this->hasMany('App\HRM\JobTitle');
+    }
 }

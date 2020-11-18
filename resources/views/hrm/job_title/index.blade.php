@@ -40,10 +40,8 @@
                                     <tr>
                                         <th class="m-1 b-1" width="3%">No</th>
                                         <th class="m-1 b-1">Name</th>
-                                        <th class="m-1 b-1"> city</th>
-                                        <th class="m-1 b-1"> address</th>
-                                        <th class="m-1 b-1"> phone</th>
-                                        <th class="m-1 b-1"> fax</th>
+                                        <th class="m-1 b-1"> Departement Name</th>
+                                        <th class="m-1 b-1"> Given Number</th>
                                         <th class="m-1 b-1" width="3%">Edit</th>
                                         <th class="m-1 b-1" width="3%">Delete</th>
                                         {{-- @endcan --}}
@@ -59,10 +57,9 @@
                                         <input type="hidden" class="deleted_value_id" value="{{$job_title->id}}">
                                         <td class='p-1'>{{++$no}}</td>
                                         <td class='p-1'>{{$job_title->name}}</td>
-                                        <td class='p-1'>{{$job_title->city}}</td>
-                                        <td class='p-1'>{{$job_title->address}}</td>
-                                        <td class='p-1'>{{$job_title->phone}}</td>
-                                        <td class='p-1'>{{$job_title->fax}}</td>
+                                        <td class='p-1'>{{$job_title->department->name}}</td>
+                                        <td class='p-1'>{{$job_title->given_number}}</td>
+
 
                                         {{-- @can('driver edit') --}}
                                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"

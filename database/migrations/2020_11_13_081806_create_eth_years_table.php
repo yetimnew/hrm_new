@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobtitlesTable extends Migration
+class CreateEthYearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateJobtitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobtitles', function (Blueprint $table) {
+        Schema::create('eth_years', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('job_description')->nullable();
-            $table->boolean('status')->default(1);
+            $table->string('number');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateJobtitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobtitles');
+        Schema::dropIfExists('eth_years');
     }
 }

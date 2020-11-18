@@ -38,7 +38,8 @@
                             <thead>
                                 <tr>
                                     <th class="m-1 b-1" width="3%">No</th>
-                                    <th class="m-1 b-1">drivereID</th>
+                                    <th class="m-1 b-1">Image</th>
+                                    <th class="m-1 b-1">ID</th>
                                     <th class="m-1 b-1"> Full Name</th>
                                     <th class="m-1 b-1"> Department</th>
                                     <th class="m-1 b-1">Job Title</th>
@@ -57,10 +58,12 @@
                                 @foreach ($personales as $personale)
                                 <tr>
                                     <td class='p-1'>{{++$no}}</td>
+                                    <td class='p-1'><img src="/images/thumbnail/{{ $personale->image }}" alt=""
+                                            class="rounded-circle" width="40" height="40"></td>
                                     <td class='p-1'>{{$personale->driverid}}</td>
                                     <td class='p-1'>{{$personale->fullname}}</td>
                                     <td class='p-1'>{{$personale->department->name}}</td>
-                                    <td class='p-1'>{{$personale->position->name}}</td>
+                                    <td class='p-1'>{{$personale->jobtitle->name }}</td>
                                     <td class='p-1'>{{$personale->hireddate}}</td>
                                     <td class='p-1'>{{$personale->status}}</td>
                                     {{-- @can('driver edit') --}}

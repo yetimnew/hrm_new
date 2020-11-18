@@ -16,7 +16,7 @@ class CreateEmployeesEmergencyContactsTable extends Migration
         Schema::create('employees_emergency_contacts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('personale_id')->index();
-            $table->foreign('personale_id')->references('id')->on('personales')->onDelete('restrict');
+            $table->foreign('personale_id')->references('id')->on('personales')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('relationship')->nullable();
             $table->string('mobile')->nullable();

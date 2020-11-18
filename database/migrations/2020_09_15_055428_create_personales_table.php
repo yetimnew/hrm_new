@@ -20,9 +20,8 @@ class CreatePersonalesTable extends Migration
             $table->string('fathername');
             $table->string('gfathername');
             $table->boolean('sex')->default(0);
-            $table->date('birthdate');
-
-            $table->date('hireddate')->nullable();
+            $table->string('birthdate');
+            $table->string('hireddate')->nullable();
             $table->boolean('driver')->default(0);
 
             $table->string('zone')->nullable();
@@ -39,8 +38,13 @@ class CreatePersonalesTable extends Migration
             $table->unsignedBigInteger('department_id')->index();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
-            $table->unsignedBigInteger('position_id')->index();
-            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
+            $table->unsignedBigInteger('jobtitle_id')->index();
+            $table->foreign('jobtitle_id')->references('id')->on('jobtitles')->onDelete('cascade');
+
+            $table->unsignedBigInteger('pay_grade_id')->index();
+            $table->foreign('pay_grade_id')->references('id')->on('pay_grades')->onDelete('cascade');
+            $table->unsignedBigInteger('pay_grade_level_id')->index();
+            $table->foreign('pay_grade_level_id')->references('id')->on('pay_grade_levels')->onDelete('cascade');
 
             $table->boolean('employment_status')->default(1);
             $table->boolean('marital_status')->default(0);

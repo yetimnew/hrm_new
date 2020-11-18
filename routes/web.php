@@ -25,10 +25,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/personale/deactivate/{id}',                     ['uses' => 'PersonalesController@deactivate', 'as' => 'personale.deactivate']);
         Route::post('/personale/deactivate_store/{id}',                 ['uses' => 'PersonalesController@deactivate_store', 'as' => 'personale.deactivate_store']);
         Route::post('/personale/activate/{id}',                 ['uses' => 'PersonalesController@activate', 'as' => 'personale.activate']);
+        Route::post('personale/append', 'PersonalesController@pay_grade_level')->name('personale.append');
         Route::resource('personale', 'PersonalesController');
         Route::resource('department', 'DepartementsController');
         Route::resource('branch', 'BranchesController');
         Route::resource('job_title', 'JobTitleController');
+        Route::resource('pay_grade', 'PayGradeController');
+        Route::resource('pay_grade_level', 'PayGradeLevelController');
+        Route::resource('promotion', 'EmployeesPromotionController');
 
         Route::get('employees_dependant/create/{id}', 'EmployeesDependantsContactController@create')->name('employees_dependant.create');
         Route::POST('employees_dependant/store',      'EmployeesDependantsContactController@store')->name('employees_dependant.store');

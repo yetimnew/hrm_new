@@ -1,6 +1,5 @@
 @extends( 'master.app' )
 @section( 'title', 'TIMS | Driver Registration' )
-
 @section( 'content' )
 
 <div class="col-md-12">
@@ -27,7 +26,6 @@
 
         </div>
         <div class="card-body">
-
             <form method="post" action="{{route('job_title.store')}}" class="form-horizontal" id="driver_reg"
                 novalidate>
                 @csrf

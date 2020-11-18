@@ -9,24 +9,30 @@ class Personale extends Model
 {
 
     protected $fillable = [
-        'id',
-        'driverid',
-        'firstname',
-        'fathername',
-        'gfathername',
-        'sex',
-        'birthdate',
-        'zone',
-        'woreda',
-        'kebele',
-        'housenumber',
-        'mobile',
-        'hireddate',
-        'driver',
-        'department_id',
-        'position_id',
-        'employment_status',
-        'status'
+            'driverid',
+            'firstname',
+            'fathername',
+            'gfathername',
+            'sex',
+            'birthdate',
+            'hireddate',
+            'driver',
+            'pay_grade_id',
+            'pay_grade_level_id',
+            'department_id',
+            'jobtitle_id',
+            'employment_status',
+            'marital_status',
+            'zone',
+            'woreda',
+            'city',
+            'sub_city',
+            'kebele',
+            'housenumber',
+            'mobile',
+            'home_telephone',
+            'work_telephone',
+            'email'
     ];
 
     public function registerMediaConversions(Media $media = null): void
@@ -84,9 +90,17 @@ class Personale extends Model
     {
         return $this->belongsTo('App\HRM\Department');
     }
-    public function position()
+    public function pay_grade()
     {
-        return $this->belongsTo('App\HRM\Position');
+        return $this->belongsTo('App\HRM\PayGrade');
+    }
+    public function jobtitle()
+    {
+        return $this->belongsTo('App\HRM\JobTitle');
+    }
+    public function promotions()
+    {
+        return $this->hasMany('App\HRM\EmployeesPromotion');
     }
     public function getNameAttribute($value)
     {
@@ -96,4 +110,41 @@ class Personale extends Model
     {
         return  ucfirst($this->firstname . ' ' . ucfirst($this->fathername)  . ' ' . ucfirst($this->gfathername));
     }
+    public function getEthYearAttribute()
+    {
+        $month =  explode('-',$this->birthdate);
+        return $month[0];
+
+    }
+    public function getEthMonthAttribute()
+    {
+        $month =  explode('-',$this->birthdate);
+        return $month[1];
+
+    }
+    public function getEthDateAttribute()
+    {
+        $month =  explode('-',$this->birthdate);
+        return $month[2];
+
+    }
+    public function getEthHYearAttribute()
+    {
+        $month =  explode('-',$this->hireddate);
+        return $month[0];
+
+    }
+    public function getEthHMonthAttribute()
+    {
+        $month =  explode('-',$this->hireddate);
+        return $month[1];
+
+    }
+    public function getEthHDateAttribute()
+    {
+        $month =  explode('-',$this->hireddate);
+        return $month[2];
+
+    }
+
 }

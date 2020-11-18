@@ -16,7 +16,7 @@ class CreateEmployeesDependantsTable extends Migration
         Schema::create('employees_dependants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('personale_id')->index();
-            $table->foreign('personale_id')->references('id')->on('personales')->onDelete('restrict');
+            $table->foreign('personale_id')->references('id')->on('personales')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('relationship')->nullable();
             $table->boolean('relationship_type')->default(0);

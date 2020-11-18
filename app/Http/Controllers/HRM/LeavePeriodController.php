@@ -5,7 +5,7 @@ namespace App\Http\Controllers\HRM;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PositionsController extends Controller
+class LeavePeriodController extends Controller
 {
 
     public function index()
@@ -13,16 +13,17 @@ class PositionsController extends Controller
         //
     }
 
+
     public function create()
     {
         //
     }
 
+
     public function store(Request $request)
     {
         //
     }
-
 
     public function show($id)
     {

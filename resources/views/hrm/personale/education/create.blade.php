@@ -16,7 +16,7 @@
         <div class="card-header">
 
             <div class="d-flex align-items-center">
-                <h4>Employee Dependants Registration</h4>
+                <h4>Employee Education Registration</h4>
                 {{-- <!-- @can('driver create') --> --}}
                 <div class="ml-auto">
                     <a href="{{route('personale.index')}}" class="btn btn-outline-primary btn-sm">

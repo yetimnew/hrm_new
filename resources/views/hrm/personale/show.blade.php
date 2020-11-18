@@ -94,7 +94,7 @@
                     <label class="control-label" for="hireddate">Hired Date</label>
                     <div class="input-group input-group-sm">
                         <input name="hireddate" type="text" id="hireddate"
-                            class="form-control  {{ $errors->has('hireddate') ? ' is-invalid' : '' }}"
+                            class="form-control"
                             value="{{old('hireddate') ?? $personale->hireddate}}" disabled>
 
                     </div>
@@ -111,6 +111,25 @@
                         <option class="dropup" value="0" selected disabled>No </option>
                         @endif
                     </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="hireddate">Pay Grade</label>
+                    <div class="input-group input-group-sm">
+                        <input name="hireddate" type="text" id="hireddate"
+                            class="form-control"
+                            value="{{old('hireddate') ?? $personale->pay_grade->name}}" disabled>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="hireddate">Pay Grade Level</label>
+                    <div class="input-group input-group-sm">
+                        <input name="hireddate" type="text" id="hireddate"
+                            class="form-control"
+                            value="{{old('hireddate') ??   $personale->pay_grade->pay_grade_levels }}" disabled>
+
+
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -130,7 +149,7 @@
                     <div class="input-group-sm">
                         <select name="position_id" id="position_id"
                             class="form-control {{ $errors->has('position_id') ? ' is-invalid' : '' }}" disabled>
-                            <option class="dropup" value="" selected disabled> {{$personale->position->name}}
+                            <option class="dropup" value="" selected disabled> {{$personale->jobtitle->name}}
                             </option>
                         </select>
                     </div>
@@ -167,7 +186,6 @@
                     <select name="marital_status" id="marital_status" required
                         class="form-control form-control-sm {{ $errors->has('marital_status') ? ' is-invalid' : '' }}"
                         disabled>
-
                         @if ($personale->marital_status == 1)
                         <option class="dropup" value="1" selected>Single</option>
                         @else
@@ -178,7 +196,7 @@
                 <div class="form-group">
                     <label class="control-label" for="birthdate">Image</label>
 
-                    <img src="/images/user_image/{{ $personale->image }}" alt="" class="rounded mx-auto d-block"
+                    <img src="/images/thumbnail/{{ $personale->image }}" alt="" class="rounded mx-auto d-block"
                         width="200" height="200">
                 </div>
             </div>
@@ -304,6 +322,9 @@
         </div>
     </div>
 </section>
+@if ($personale->active)
+{{ dd("is active")}}
+@endif
 <section class="dashboard-counts no-padding-bottom">
     <div class="container">
         <div class="row bg-white has-shadow">
@@ -311,16 +332,13 @@
                 <div class="d-flex align-items-center">
                     <h4>All Dependants </h4>
                     {{-- @can('customer create') --}}
-
-                    <div class="ml-auto">
+                    <div class="ml-auto mr-2">
                         <a href="{{route('employees_dependant.create', $personale->id)}}"
                             class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add Dependants</a>
-
                     </div>
                     {{-- @endcan --}}
                 </div>
             </div>
-
 
             <table class="table">
                 <thead>
@@ -373,20 +391,18 @@
                 </tbody>
             </table>
 
-
         </div>
     </div>
 </section>
 <section class="dashboard-counts no-padding-bottom">
-    <div class="row bg-white has-shadow">
-        <div class="container">
+    <div class="container">
+        <div class="row bg-white has-shadow">
             <div class="col-12 m-3">
-
                 <div class="d-flex align-items-center">
                     <h4>All Emergency Contact </h4>
                     {{-- @can('customer create') --}}
 
-                    <div class="ml-auto">
+                    <div class="ml-auto mr-2">
                         <a href="{{route('emergence_contact.create', $personale->id)}}"
                             class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add Emergency
                             contact</a>
@@ -451,19 +467,20 @@
     </div>
 </section>
 <section class="dashboard-counts no-padding-bottom">
-    <div class="row bg-white has-shadow">
-        <div class="container">
+    <div class="container">
+        <div class="row bg-white has-shadow">
             <div class="col-12 m-3">
                 <div class="d-flex align-items-center">
-                    <h4>All Experiance<h4>
-                            {{-- @can('customer create') --}}
-                            <div class="ml-auto">
-                                <a href="{{route('experience.create', $personale->id)}}"
-                                    class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
-                                    Experiance</a>
+                    <h4>Experiance Details </h4>
+                    {{-- @can('customer create') --}}
 
-                            </div>
-                            {{-- @endcan --}}
+                    <div class="ml-auto mr-2">
+                        <a href="{{route('experience.create', $personale->id)}}"
+                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                            Experiance</a>
+
+                    </div>
+                    {{-- @endcan --}}
                 </div>
             </div>
 
@@ -524,21 +541,20 @@
 </section>
 <!-- Button trigger modal -->
 <section class="dashboard-counts no-padding-bottom">
-    <div class="row bg-white has-shadow">
-        <div class="container">
+    <div class="container">
+        <div class="row bg-white has-shadow">
             <div class="col-12 m-3">
-
                 <div class="d-flex align-items-center">
-                    <h4>All Education<h4>
-                            {{-- @can('customer create') --}}
+                    <h4>Education Details </h4>
+                    {{-- @can('customer create') --}}
 
-                            <div class="ml-auto">
-                                <a href="{{route('education.create', $personale->id)}}"
-                                    class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
-                                    Education</a>
+                    <div class="ml-auto mr-2">
+                        <a href="{{route('education.create', $personale->id)}}"
+                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                            Education</a>
 
-                            </div>
-                            {{-- @endcan --}}
+                    </div>
+                    {{-- @endcan --}}
                 </div>
             </div>
 
@@ -601,6 +617,93 @@
         </div>
     </div>
 </section>
+
+@if ($promotion->count() >0)
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container">
+        <div class="row bg-white has-shadow">
+            <div class="col-12 m-3">
+                <div class="d-flex align-items-center">
+                    <h4>Promotion Details </h4>
+                    {{-- @can('customer create') --}}
+                    {{-- <div class="ml-auto mr-2">
+                        <a href="{{route('education.create', $personale->id)}}"
+                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                            Education</a>
+
+                    </div> --}}
+                    {{-- @endcan --}}
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th class="m-1 b-1">personale_id</th>
+                        <th class="m-1 b-1"> department_id</th>
+                        <th class="m-1 b-1"> jobtitle_id</th>
+                        <th class="m-1 b-1"> pay_grade_id</th>
+                        <th class="m-1 b-1"> pay_grade_level_id</th>
+                        <th class="m-1 b-1"> start_date</th>
+                        <th class="m-1 b-1"> comment</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if ($promotion ->count()> 0)
+                    <?php $no = 1 ?>
+                    @foreach ($promotion as $promo)
+                    <tr>
+                        <th scope="row">{{$no++}}</th>
+                        <td class='p-1'>{{$promo->personal->fullName}}</td>
+                        <td class='p-1'>{{$promo->department->name}}</td>
+                        <td class='p-1'>{{$promo->jobtitle->name}}</td>
+                        <td class='p-1'>{{$promo->paygrade->name}}</td>
+                        <td class='p-1'>{{$promo->paygradelevel->name}}</td>
+                        <td class='p-1'>{{$promo->start_date}}</td>
+                        <td class='p-1'>{{$promo->comment}}</td>
+                        @if ($promo->status == 0)
+
+                        <td class='p-1'>Old</td>
+                        @else
+                        <td class='p-1'>New</td>
+                        @endif
+
+                        <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
+                            <a href="{{route('promotion.edit', $promo->id)}}"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class='p-1 text-center'>
+                            <form method="POST" action="{{route('promotion.destroy', $promo->id)}}"
+                                id="deactivate-form4-{{$promo->id}}" style="display: none">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <button class="btn btn-sm" type="submit" onclick="if(confirm('Are you sure to delete  Experiance? if your answer is yes you don\'t restore it. ')){
+                            event.preventDefault();
+                            document.getElementById('deactivate-form4-{{$promo->id}}').submit();
+                                }else{
+                                    event.preventDefault();
+                                }"> <i class="fas fa-trash red"></i>
+
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td class='m-1 p-1 text-center' colspan="12">No Data Avilable</td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@endif
 <!-- Button trigger modal -->
 
 <!-- Modal -->
