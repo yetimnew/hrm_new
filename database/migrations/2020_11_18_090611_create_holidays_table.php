@@ -18,6 +18,7 @@ class CreateHolidaysTable extends Migration
             $table->string('description');
             $table->date('date');
             $table->boolean('recurring')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

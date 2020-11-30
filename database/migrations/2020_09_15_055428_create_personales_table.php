@@ -24,6 +24,9 @@ class CreatePersonalesTable extends Migration
             $table->string('hireddate')->nullable();
             $table->boolean('driver')->default(0);
 
+            $table->string('penssionid')->nullable();
+            $table->string('tin_no')->nullable();
+
             $table->string('zone')->nullable();
             $table->string('woreda')->nullable();
             $table->string('city')->nullable();
@@ -34,6 +37,7 @@ class CreatePersonalesTable extends Migration
             $table->string('home_telephone')->nullable();
             $table->string('work_telephone')->nullable();
             $table->string('email')->nullable();
+
 
             $table->unsignedBigInteger('department_id')->index();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');

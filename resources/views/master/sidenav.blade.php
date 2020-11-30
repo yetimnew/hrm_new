@@ -65,5 +65,11 @@
         </li>
         <li><a href="{{ route('promotion.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Promotion </a>
         </li>
+        <li><a href="{{ route('leave_type.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Leave Type </a>
+        </li>
+        <li><a href="{{ route('holiday.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Holiday </a>
+        </li>
+        <li><a href="{{ route('work_week.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Work Week </a>
+        </li>
     </ul>
 </nav>

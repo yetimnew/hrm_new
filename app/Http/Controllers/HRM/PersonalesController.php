@@ -18,11 +18,6 @@ use App\HRM\EmployeesEmergencyContact;
 use App\HRM\EmployeesPromotion;
 use App\HRM\JobTitle;
 use Illuminate\Support\Facades\Session;
-use Andegna\Constants;
-use Andegna\DateTimeFactory as fact;
-use Andegna\DateTime as eth;
-use Andegna\Converter\FromJdnConverter;
-use Andegna\DateTime;
 use App\EthDate;
 use App\EthMonth;
 use App\EthYear;
@@ -82,6 +77,8 @@ class PersonalesController extends Controller
             'driver' => 'required',
             'pay_grade_id' => 'required',
             'pay_grade_level_id' => 'required',
+            'penssionid' => '',
+            'tin_no' => 'integer',
             'department_id' =>  'required',
             'position_id' =>  'required',
             'employment_status' =>  'required',
@@ -98,7 +95,6 @@ class PersonalesController extends Controller
             'email' =>  '',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-
         try {
             $ethio_birthdate = \Andegna\DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
             $ethio_hiredate = \Andegna\DateTimeFactory::of($request->hyear,   $request->hmonth, $request->hdate);
@@ -122,6 +118,10 @@ class PersonalesController extends Controller
         $personale->driver = $request->driver;
         $personale->pay_grade_id = $request->pay_grade_id;
         $personale->pay_grade_level_id = $request->pay_grade_level_id;
+
+        $personale->penssionid = $request->penssionid;
+        $personale->tin_no = $request->tin_no;
+
         $personale->department_id = $request->department_id;
         $personale->jobtitle_id = $request->position_id;
         $personale->employment_status = $request->employment_status;

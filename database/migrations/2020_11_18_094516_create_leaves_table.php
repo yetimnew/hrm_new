@@ -24,6 +24,7 @@ class CreateLeavesTable extends Migration
             $table->unsignedBigInteger('leave_type_id');
             $table->time('start_time');
             $table->time('end_time');
+
             $table->timestamps();
         });
     }

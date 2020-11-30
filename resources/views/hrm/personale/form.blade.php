@@ -262,6 +262,36 @@
         </div>
 
         <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="form-group required">
+                <label class="control-label" for="penssionid">Penssion Number</label>
+                <div class="input-group-sm">
+                    <input name="penssionid" type="text" id="penssionid"
+                        class="form-control select {{ $errors->has('penssionid') ? ' is-invalid' : '' }}"
+                        value="{{old('penssionid') ?? $personale->penssionid}}" onfocusout="validatepenssionid()">
+                    @if ($errors->has('penssionid'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('penssionid') }}</strong>
+                    </span>
+                    @endif
+                    <span class="invalid-feedback" role="alert"></span>
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="control-label" for="tin_no">TIN Number</label>
+                <div class="input-group-sm">
+                    <input name="tin_no" type="number" id="tin_no"
+                        class="form-control select {{ $errors->has('tin_no') ? ' is-invalid' : '' }}"
+                        value="{{old('tin_no') ?? $personale->tin_no}}" onfocusout="validatetin_no()">
+                    @if ($errors->has('tin_no'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('tin_no') }}</strong>
+                    </span>
+                    @endif
+                    <span class="invalid-feedback" role="alert"></span>
+                </div>
+            </div>
+
+
             <div class="form-group  required">
                 <label class="control-label" for="department_id">Department Name</label>
                 <div class="input-group-sm">

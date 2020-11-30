@@ -28,12 +28,12 @@
             </div>
 
             <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="form-group 	required">
+                <div class="form-group 	">
                     <label class="control-label">Driver ID</label>
                     <div class="input-group-sm">
                         <input name="driverid" type="text" id="driverid"
                             class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                            value="{{old('driverid') ?? $personale->driverid}}" disabled>
+                            value="{{ $personale->driverid}}" disabled>
 
                     </div>
 
@@ -44,7 +44,7 @@
                     <div class="input-group-sm">
                         <input name="firstname" type="text" id="firstname"
                             class="form-control select {{ $errors->has('firstname') ? ' is-invalid' : '' }}"
-                            value="{{old('firstname') ?? $personale->firstname}}" disabled>
+                            value="{{ $personale->firstname}}" disabled>
 
 
                     </div>
@@ -55,7 +55,7 @@
                     <div class="input-group-sm">
                         <input name="fathername" type="text" id="fathername"
                             class="form-control select {{ $errors->has('fathername') ? ' is-invalid' : '' }}"
-                            value="{{old('fathername') ?? $personale->fathername}}" disabled>
+                            value="{{ $personale->fathername}}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,13 +63,13 @@
                     <div class="input-group-sm">
                         <input name="gfathername" type="text" id="gfathername"
                             class="form-control select {{ $errors->has('gfathername') ? ' is-invalid' : '' }}"
-                            value="{{old('gfathername') ?? $personale->gfathername}}" disabled>
+                            value="{{ $personale->gfathername}}" disabled>
 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="sex">Sex</label>
-                    <select name="sex" id="sex" required
+                    <select name="sex" id="sex"
                         class="form-control form-control-sm {{ $errors->has('sex') ? ' is-invalid' : '' }}" disabled>
                         @if ($personale->sex == 1)
                         <option class="dropup" value="0" selected>Male </option>
@@ -85,7 +85,7 @@
                     <div class="input-group input-group-sm">
                         <input name="birthdate" type="text" id="birthdate"
                             class="form-control  {{ $errors->has('birthdate') ? ' is-invalid' : '' }}"
-                            value="{{old('birthdate') ?? $personale->birthdate}}" disabled>
+                            value="{{ $personale->birthdate}}" disabled>
 
                     </div>
 
@@ -95,7 +95,7 @@
                     <div class="input-group input-group-sm">
                         <input name="hireddate" type="text" id="hireddate"
                             class="form-control"
-                            value="{{old('hireddate') ?? $personale->hireddate}}" disabled>
+                            value="{{ $personale->hireddate}}" disabled>
 
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                 <div class="form-group">
                     <label class="control-label" for="driver">Driver</label>
 
-                    <select name="driver" class="form-control form-control-sm" id="driver" required>
+                    <select name="driver" class="form-control form-control-sm" id="driver" >
                         @if ($personale->driver == 1)
                         <option class="dropup" value="1" selected disabled>Yes </option>
                         @endif
@@ -117,7 +117,7 @@
                     <div class="input-group input-group-sm">
                         <input name="hireddate" type="text" id="hireddate"
                             class="form-control"
-                            value="{{old('hireddate') ?? $personale->pay_grade->name}}" disabled>
+                            value="{{ $personale->pay_grade->name}}" disabled>
 
                     </div>
                 </div>
@@ -126,37 +126,51 @@
                     <div class="input-group input-group-sm">
                         <input name="hireddate" type="text" id="hireddate"
                             class="form-control"
-                            value="{{old('hireddate') ??   $personale->pay_grade->pay_grade_levels }}" disabled>
+                            value="{{   $personale->pay_grade->pay_grade_levels }}" disabled>
 
 
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="form-group  required">
+                <div class="form-group">
+                    <label class="control-label" for="hireddate">Penssion Number</label>
+                    <div class="input-group input-group-sm">
+                        <input name="hireddate" type="text" id="hireddate"
+                            class="form-control"
+                            value="{{   $personale->penssionid }}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="hireddate">TIN Number</label>
+                    <div class="input-group input-group-sm">
+                        <input name="hireddate" type="text" id="hireddate"
+                            class="form-control"
+                            value="{{   $personale->tin_no }}" disabled>
+                    </div>
+                </div>
+                <div class="form-group  ">
                     <label class="control-label" for="department_id">Department Name</label>
-                    <div class="input-group-sm">
-                        <select name="department_id" id="department_id"
-                            class="form-control {{ $errors->has('department_id') ? ' is-invalid' : '' }}" disabled>
-                            <option class="dropup" value="" selected disabled> {{$personale->department->name}}
-                            </option>
-                        </select>
+                    <div class="input-group input-group-sm">
+                        <input name="hireddate" type="text" id="hireddate"
+                            class="form-control"
+                            value="{{ $personale->department->name }}" disabled>
                     </div>
                 </div>
 
-                <div class="form-group  required">
+                <div class="form-group  ">
                     <label class="control-label" for="position_id">position_id Title</label>
                     <div class="input-group-sm">
-                        <select name="position_id" id="position_id"
-                            class="form-control {{ $errors->has('position_id') ? ' is-invalid' : '' }}" disabled>
-                            <option class="dropup" value="" selected disabled> {{$personale->jobtitle->name}}
-                            </option>
-                        </select>
+                        <div class="input-group input-group-sm">
+                            <input name="hireddate" type="text" id="hireddate"
+                                class="form-control"
+                                value="{{ $personale->jobtitle->name }}" disabled>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="employment_status">employment_status</label>
-                    <select name="employment_status" id="employment_status" required
+                    <select name="employment_status" id="employment_status"
                         class="form-control form-control-sm {{ $errors->has('employment_status') ? ' is-invalid' : '' }}"
                         disabled>
                         @if ($personale->employment_status == 1)
@@ -166,24 +180,20 @@
                         @endif
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label class="control-label" for="status">status</label>
                     <div class="input-group input-group-sm">
                         @if ($personale->status == 1)
-                        <div class="alert alert-primary" role="alert">
-                            Active
-                        </div>
+                        <div class="alert alert-primary" role="alert">Active</div>
                         @else
-                        <div class="alert alert-danger" role="alert">
-                            Inactive
-                        </div>
+                        <div class="alert alert-danger" role="alert">Inactive</div>
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="marital_status">marital_status</label>
-
-                    <select name="marital_status" id="marital_status" required
+                    <select name="marital_status" id="marital_status"
                         class="form-control form-control-sm {{ $errors->has('marital_status') ? ' is-invalid' : '' }}"
                         disabled>
                         @if ($personale->marital_status == 1)
@@ -193,9 +203,9 @@
                         @endif
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label class="control-label" for="birthdate">Image</label>
-
                     <img src="/images/thumbnail/{{ $personale->image }}" alt="" class="rounded mx-auto d-block"
                         width="200" height="200">
                 </div>
@@ -208,7 +218,7 @@
                         <div class="input-group input-group-sm">
                             <input name="zone" type="text" id="zone"
                                 class="form-control  {{ $errors->has('zone') ? ' is-invalid' : '' }}"
-                                value="{{old('zone') ?? $personale->zone}}" disabled>
+                                value="{{ $personale->zone}}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -216,21 +226,21 @@
                         <div class="input-group input-group-sm">
                             <input name="woreda" type="text" id="woreda"
                                 class="form-control  {{ $errors->has('woreda') ? ' is-invalid' : '' }}"
-                                value="{{old('woreda') ?? $personale->woreda}}" disabled>
+                                value="{{ $personale->woreda}}" disabled>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="city">city</label>
                             <div class="input-group input-group-sm">
                                 <input name="city" type="text" id="city"
                                     class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}"
-                                    value="{{old('city') ?? $personale->city}}" disabled>
+                                    value="{{ $personale->city}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="sub_city">sub_city</label>
                                 <div class="input-group input-group-sm">
                                     <input name="sub_city" type="text" id="sub_city"
                                         class="form-control  {{ $errors->has('sub_city') ? ' is-invalid' : '' }}"
-                                        value="{{old('sub_city') ?? $personale->sub_city}}" disabled>
+                                        value="{{ $personale->sub_city}}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -238,7 +248,7 @@
                                 <div class="input-group input-group-sm">
                                     <input name="kebele" type="text" id="kebele"
                                         class="form-control  {{ $errors->has('kebele') ? ' is-invalid' : '' }}"
-                                        value="{{old('kebele') ?? $personale->kebele}}" disabled>
+                                        value="{{ $personale->kebele}}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -246,7 +256,7 @@
                                 <div class="input-group input-group-sm">
                                     <input name="housenumber" type="text" id="housenumber"
                                         class="form-control  {{ $errors->has('housenumber') ? ' is-invalid' : '' }}"
-                                        value="{{old('housenumber') ?? $personale->housenumber}}" disabled>
+                                        value="{{ $personale->housenumber}}" disabled>
                                 </div>
 
                             </div>
@@ -255,7 +265,7 @@
                                 <div class="input-group input-group-sm">
                                     <input name="mobile" type="text" id="mobile"
                                         class="form-control  {{ $errors->has('mobile') ? ' is-invalid' : '' }}"
-                                        value="{{old('mobile') ?? $personale->mobile}}" disabled>
+                                        value="{{ $personale->mobile}}" disabled>
                                 </div>
 
                             </div>
@@ -264,7 +274,7 @@
                                 <div class="input-group input-group-sm">
                                     <input name="home_telephone" type="text" id="home_telephone"
                                         class="form-control  {{ $errors->has('home_telephone') ? ' is-invalid' : '' }}"
-                                        value="{{old('home_telephone') ?? $personale->home_telephone}}" disabled>
+                                        value="{{ $personale->home_telephone}}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -272,7 +282,7 @@
                                 <div class="input-group input-group-sm">
                                     <input name="work_telephone" type="text" id="work_telephone"
                                         class="form-control  {{ $errors->has('work_telephone') ? ' is-invalid' : '' }}"
-                                        value="{{old('work_telephone') ?? $personale->work_telephone}}" disabled>
+                                        value="{{ $personale->work_telephone}}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -280,7 +290,7 @@
                                 <div class="input-group input-group-sm">
                                     <input name="email" type="text" id="email"
                                         class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        value="{{old('email') ?? $personale->email}}" disabled>
+                                        value="{{ $personale->email}}" disabled>
                                 </div>
                             </div>
                 </fieldset>

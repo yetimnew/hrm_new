@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('pay_grade', 'PayGradeController');
         Route::resource('pay_grade_level', 'PayGradeLevelController');
         Route::resource('promotion', 'EmployeesPromotionController');
+        Route::resource('leave_type', 'LeaveTypeController');
+        Route::resource('holiday', 'HolidayController');
+        Route::resource('work_week', 'WorkWeekController');
 
         Route::get('employees_dependant/create/{id}', 'EmployeesDependantsContactController@create')->name('employees_dependant.create');
         Route::POST('employees_dependant/store',      'EmployeesDependantsContactController@store')->name('employees_dependant.store');
