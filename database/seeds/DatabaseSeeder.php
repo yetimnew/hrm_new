@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TruckTableSeeder::class);
         $this->call(JobCardTypeTableSeeder::class);
         $this->call(JobTypeTableSeeder::class);
+        $this->call(EthDateTableSeeder::class);
+        $this->call(EthMonthTableSeeder::class);
+        $this->call(EthYearTableSeeder::class);
         $this->call(PersonaleTableSeeder::class);
         // $this->call(JobIdentTableSeeder::class);
     }

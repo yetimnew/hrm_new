@@ -15,6 +15,9 @@ class CreateLeavePeriodsTable extends Migration
     {
         Schema::create('leave_periods', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->timestamps();
         });
     }
