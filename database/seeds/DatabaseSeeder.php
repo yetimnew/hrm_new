@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\PayGradeTableSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EthDateTableSeeder::class);
         $this->call(EthMonthTableSeeder::class);
         $this->call(EthYearTableSeeder::class);
+        $this->call(PayGradeTableSeeder::class);
         $this->call(PersonaleTableSeeder::class);
         // $this->call(JobIdentTableSeeder::class);
     }

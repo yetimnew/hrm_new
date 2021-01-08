@@ -43,7 +43,7 @@ class HolidayController extends Controller
             'dddate' =>  'required',
             'ddmonth' =>  'required',
             'ddyear' =>  'required',
-            'recurring' =>  '',
+            // 'recurring' =>  '',
         ]);
         try {
             $ethio_birthdate = \Andegna\DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
@@ -58,7 +58,7 @@ class HolidayController extends Controller
         $holiday = new Holiday();
         $holiday->description = $request->name;
         $holiday->date =$ethio_ddate;
-        $holiday->recurring = $request->recurring;
+        $holiday->recurring = $request->recurring ?? 0;
 
         $holiday->save();
         Session::flash('success',  $holiday->name .  ' registered successfully');

@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('holiday', 'HolidayController');
         Route::resource('work_week', 'WorkWeekController');
         Route::resource('leave_period', 'LeavePeriodController');
+        Route::resource('leave_entitlement', 'LeaveEntitlementController');
+        Route::resource('leave', 'LeaveController');
+        Route::post('leave/append', 'LeaveController@list_of_leave')->name('leave.append');
+        Route::post('leave_entitlement/append', 'LeaveEntitlementController@list_of_leave')->name('leave_entitlement.append');
 
         Route::get('employees_dependant/create/{id}', 'EmployeesDependantsContactController@create')->name('employees_dependant.create');
         Route::POST('employees_dependant/store',      'EmployeesDependantsContactController@store')->name('employees_dependant.store');

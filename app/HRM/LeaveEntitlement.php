@@ -2,19 +2,12 @@
 
 namespace App\HRM;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Leave extends Model
+class LeaveEntitlement extends Model
 {
-    protected $fillable = [
-    'request_date',
-     'length_hours',
-     'length_days',
-     'status',
-     'comment',
-     'personale_id',
-      'leave_type_id'
-    ];
+    use HasFactory;
     public function personal()
     {
         return $this->belongsTo('App\HRM\Personale','personale_id');

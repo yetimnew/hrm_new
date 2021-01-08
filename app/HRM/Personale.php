@@ -108,7 +108,7 @@ class Personale extends Model
     }
     public function getFullNameAttribute()
     {
-        return  ucfirst($this->firstname . ' ' . ucfirst($this->fathername)  . ' ' . ucfirst($this->gfathername));
+        return  ($this->firstname . ' ' . $this->fathername . ' ' . $this->gfathername);
     }
     public function getEthYearAttribute()
     {

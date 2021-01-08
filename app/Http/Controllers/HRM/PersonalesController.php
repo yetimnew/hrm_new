@@ -203,7 +203,7 @@ class PersonalesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'driverid' =>  'required',
+            'driverid' =>  'required|unique:personales,driverid,' . $id,
             'firstname' =>  'required|min:2',
             'fathername' =>  'required||min:2',
             'gfathername' =>  'required||min:2',

@@ -15,12 +15,13 @@ class CreateLeavesTable extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->date('request_date');
+            $table->unsignedBigInteger('auto_id');
+            $table->dateTime('request_date');
             $table->decimal('length_hours', 6,2);
             $table->decimal('length_days', 6,4);
             $table->string('status');
             $table->text('comment');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('personale_id');
             $table->unsignedBigInteger('leave_type_id');
             $table->time('start_time');
             $table->time('end_time');

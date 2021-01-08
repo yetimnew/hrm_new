@@ -1,7 +1,7 @@
 <nav class="side-navbar">
     <!-- Sidebar Header-->
     <div class="sidebar-header d-flex align-items-center">
-        @auth
+        {{-- @auth
         @isset(Auth::user()->profile->image)
         <div class="avatar"><img src="{{ asset(Auth::user()->profile->image)}}" alt="User Name"
                 class="img-fluid rounded-circle" width="150" height="150">
@@ -10,7 +10,7 @@
         <div class="title">
             <h1 class="h4">{{Auth::user()->name}}</h1>
         </div>
-        @endauth
+        @endauth --}}
 
         <div class="">
 
@@ -50,26 +50,29 @@
 
 
         <span class="heading">HRM</span>
-        <li><a href="{{ route('personale.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Personale </a>
+        <li><a href="{{ route('personale.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> ሰራተኛ </a>
         </li>
-        <li><a href="{{ route('department.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Department
+        <li><a href="{{ route('department.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> የስራ ክፍል
             </a>
         </li>
-        <li><a href="{{ route('branch.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Branch</a></li>
-        <li><a href="{{ route('pay_grade.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Pay Grade</a>
+        <li><a href="{{ route('branch.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> ቅርንጫፍ</a></li>
+        <li><a href="{{ route('pay_grade.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i>ደረጃ</a>
         </li>
-        <li><a href="{{ route('pay_grade_level.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Pay
-                Grade Level</a>
+        <li><a href="{{ route('pay_grade_level.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> እርከን</a>
         </li>
-        <li><a href="{{ route('job_title.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Job title</a>
+        <li><a href="{{ route('job_title.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> የስራ መደብ</a>
         </li>
-        <li><a href="{{ route('promotion.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Promotion </a>
+        <li><a href="{{ route('promotion.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> ዕድገት </a>
         </li>
-        <li><a href="{{ route('leave_type.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Leave Type </a>
+        <li><a href="{{ route('leave_type.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> የፍቃድ ዓይነት </a>
         </li>
-        <li><a href="{{ route('holiday.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Holiday </a>
+        <li><a href="{{ route('leave_period.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> በጀት ዓመት </a>
+        <li><a href="{{ route('leave_entitlement.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i>ፍቃድ መሙያ </a>
+        <li><a href="{{ route('leave.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i>ፍቃድ </a>
+        <li><a href="{{ route('holiday.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i>በዓል </a>
         </li>
-        <li><a href="{{ route('work_week.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> Work Week </a>
+        <li><a href="{{ route('work_week.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> የሥራ ቀናት </a>
+        </li>
         </li>
     </ul>
 </nav>

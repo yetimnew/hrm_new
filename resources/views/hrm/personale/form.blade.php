@@ -155,7 +155,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group required ">
-                <label class="control-label">Date</label>
+                <label class="control-label" for="hdate">Date</label>
                 <select name="hdate" class="form-control {{ $errors->has('hdate') ? ' is-invalid' : '' }} select" id="hdate"
                     onfocusout="validatehdate()">
                     <option class="dropup" value=""> Select One</option>
