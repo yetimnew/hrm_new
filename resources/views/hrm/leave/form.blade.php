@@ -63,7 +63,7 @@
 
 </div>
 <div class="form-group 	required">
-    <label class="control-label" for="end_date">Start Date</label>
+    <label class="control-label" for="end_date">{{__( 'End Date')}}</label>
     <div class="input-group-sm">
         <input name="end_date" type="date" id="end_date"
             class="form-control  input-sm {{ $errors->has('end_date') ? ' is-invalid' : '' }}"

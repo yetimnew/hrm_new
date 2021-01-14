@@ -12,13 +12,14 @@ use App\HRM\LeavePeriod;
 use App\HRM\LeaveType;
 use App\HRM\Personale;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreLeaveRequest;
 use Carbon\Carbon;
-// use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 
 class LeaveController extends Controller
 {
@@ -68,19 +69,21 @@ class LeaveController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreLeaveRequest $request )
     {
-        $employee_id =   Personale::where('id', $request->personale_id)->pluck('id')->first();
-        // dd( $employee_id);
+        // $employee_id =   Personale::where('id', $request->personale_id)->pluck('id')->first();
+        // // dd( $employee_id);
 
-        $data = $request->validate([
-            'personale_id' =>  'required|numeric',
-            'leave_type_id_' =>  'required|numeric',
-            'start_date' => 'required|date|unique:leaves,request_date,'.  $employee_id,
-            'end_date' => 'required|date|after:start_date|unique:leaves,request_date,'.  $employee_id,
-            // 'leave_period_id_' => 'required|numeric',
-            'note' => '',
-        ]);
+        // $data = $request->validate([
+        //     'personale_id' =>  'required|numeric',
+        //     'leave_type_id_' =>  'required|numeric',
+        //     'request_date' => [
+        //         'required',
+        //         'date',
+        //         Rule::unique('leaves')->where('personale_id',  $employee_id)
+        //                   ],
+        //           'note' => '',
+        // ]);
         $auto_id = 0;
         if( Leave::all()->count()){
             $auto_id= Leave::max('auto_id');
@@ -137,7 +140,6 @@ if(  $days < $emp_details[0]->remaing_date ){
                     $leave->length_hours =  8;
                     $leave->length_days =  1;
                 }
-
             }
         }else{
          $esti=    $leave->request_date =   $datetime1->addDay();
@@ -154,9 +156,7 @@ if(  $days < $emp_details[0]->remaing_date ){
                     $leave->length_hours =  8;
                     $leave->length_days =  1;
                 }
-
             }
-
         }
         $leave->auto_id =   $auto_id ;
         $leave->status =  1;
