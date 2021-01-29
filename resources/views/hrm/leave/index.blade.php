@@ -23,18 +23,73 @@
                         <div class="d-flex align-items-center">
                             <h4>All leaves</h4>
                             {{-- @can('customer create') --}}
-
                             <div class="ml-auto">
                                 <a href="{{route('leave.create')}}" class="btn btn-outline-primary btn-sm"><i
                                         class="fas fa-plus mr-1"></i>Add Leave Entitlment</a>
-
                             </div>
                             {{-- @endcan --}}
                         </div>
                     </div>
 
                     <div class="card-body">
-            <all-leave-component></all-leave-component>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table-sm table table-bordered table-sm table-striped" id="personales">
+                                <thead>
+                                    <tr>
+                                        <th class="m-1 b-1">{{ __('No') }}</th>
+                                        <th class="m-1 b-1">{{__('ID')}}</th>
+                                        <th class="m-1 b-1">{{__('Full Name')}}</th>
+                                        <th class="m-1 b-1">{{__('Leave Type')}}</th>
+                                        <th class="m-1 b-1">{{__('Request Date')}}</th>
+                                        <th class="m-1 b-1">{{__('Hours')}}</th>
+                                        <th class="m-1 b-1">{{__('Status')}}</th>
+                                        <th class="m-1 b-1">{{__('Comment')}}</th>
+                                        <th class="m-1 b-1" width="3%">Edit</th>
+                                        <th class="m-1 b-1" width="3%">Delete</th>
+                                        {{-- @endcan --}}
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 0 ?>
+                                    @if ($leaves->count() > 0)
+                                    @foreach ($leaves as $leave)
+                                    <tr>
+                                        <input type="hidden" class="deleted_value_id" value="{{$leave->id}}">
+                                        <td class='p-1'>{{++$no}}</td>
+                                        <td class='p-1'>{{$leave->auto_id}}</td>
+                                        <td class='p-1'>{{$leave->personal->fullname}}</td>
+                                        <td class='p-1'>{{$leave->leave_type->name}}</td>
+                                        <td class='p-1'>{{$leave->request_date}}</td>
+                                        <td class='p-1'>{{$leave->length_hours}}</td>
+                                        <td class='p-1'>{{$leave->status}}</td>
+                                        <td class='p-1'>{{$leave->comment}}</td>
+
+
+                                        {{-- @can('driver edit') --}}
+                                        <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
+                                            title="edit">
+                                            <a href="{{route('leave.edit', $leave->id)}}"><i
+                                                    class="fas fa-edit"></i></a>
+                                        </td>
+                                        <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
+                                            title="delete">
+                                            <button id="delete_branch" class="delete_branch red"> <i
+                                                    class="fas fa-trash" aria-hidden="true"></i></button>
+                                        </td>
+                                        {{-- @endcan --}}
+                                    </tr>
+                                    @endforeach
+                                    @else
+                                    <tr>
+                                        <td class='m-1 p-1 text-center' colspan="15">No Data Avilable</td>
+                                    </tr>
+                                    @endif
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="card-footer">
 

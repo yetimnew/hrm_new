@@ -69,21 +69,16 @@ class LeaveController extends Controller
     }
 
 
-    public function store(StoreLeaveRequest $request )
+    public function store(Request $request )
     {
-        // $employee_id =   Personale::where('id', $request->personale_id)->pluck('id')->first();
-        // // dd( $employee_id);
-
-        // $data = $request->validate([
-        //     'personale_id' =>  'required|numeric',
-        //     'leave_type_id_' =>  'required|numeric',
-        //     'request_date' => [
-        //         'required',
-        //         'date',
-        //         Rule::unique('leaves')->where('personale_id',  $employee_id)
-        //                   ],
-        //           'note' => '',
-        // ]);
+         $request->validate([
+            'personale_id' =>  'required|numeric',
+            'leave_type_id_' =>  'required|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'note' => '',
+        ]);
+        //auto in initialization
         $auto_id = 0;
         if( Leave::all()->count()){
             $auto_id= Leave::max('auto_id');
@@ -91,8 +86,9 @@ class LeaveController extends Controller
 }else{
     $auto_id=1;
  }
-        $fdate = $request->start_date;
-        $tdate = $request->end_date;
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
         $personale_id = $request->personale_id;
         $holydays = Holiday::all();
         $hodlyday_days = [];
@@ -113,14 +109,14 @@ class LeaveController extends Controller
             ->groupBy('personales.firstname')
             ->get();
 
-        $datetime1 = Carbon::parse($fdate);
-        $datetime2 = Carbon::parse($tdate );
+        $datetime1 = Carbon::parse($start_date);
+        $datetime2 = Carbon::parse($end_date );
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a');
-
-
-// dd($datetime1->isWeekend());
+        // $days_used = 0
+// it check the date the employee have and requested
 if(  $days < $emp_details[0]->remaing_date ){
+    $total_leave = 0;
     // dd("date comparison wokes");
     for ($i=0;  $i <=  $days  ; $i++) {
         $leave = new Leave;
@@ -165,8 +161,45 @@ if(  $days < $emp_details[0]->remaing_date ){
         $leave->leave_type_id = $request->leave_type_id_;
         $leave->start_time = 8;
         $leave->end_time = 8;
+        // dd( $leave);
         $leave->save();
+        $total_leave =  $total_leave +  $leave->length_days;
+
     }
+    // dd(    $total_leave);
+
+    $leave_entitlement = LeaveEntitlement::where('personale_id', $leave->personale_id)->get();
+
+    foreach ($leave_entitlement as $key => $lt) {
+
+        $reaming_date =  $lt->no_of_days - $lt->days_used;
+
+        if($lt->no_of_days >=  $lt->days_used){
+            $esti = LeaveEntitlement::where('personale_id', $leave->personale_id)->take($key + 1 )->increment('days_used', $total_leave );
+
+                $leave_entitlement = LeaveEntitlement::where('personale_id', $leave->personale_id)
+                ->increment('days_used', $total_leave );
+            // }
+
+        }else{
+            dd("False");
+            $leave_entitlement = LeaveEntitlement::where('personale_id', $leave->personale_id)
+            ->increment('days_used',0 );
+        }
+        // dd($lt->days_used);
+    }
+
+
+    // $leave_entitlement = LeaveEntitlement::where('personale_id', $leave->personale_id)->increment('days_used' , $total_leave);
+    // ->update(array('days_used', DB::raw('days_used + 1000')));
+    // // dd( $leave_entitlement);
+    // $leave_entitlement->days_used + $total_leave;
+    // // dd( $leave_entitlement);
+    // $leave_entitlement->save();
+
+    // DB::table('leave_entitlements')
+    // ->where('personale_id',$leave->personale_id)
+    // ->update(['days_used'=> $total_leave]);
 
         Session::flash('success',  'Registered successfully');
         return redirect()->route('leave.index');

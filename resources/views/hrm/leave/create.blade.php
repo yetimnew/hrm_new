@@ -27,36 +27,35 @@
 
         </div>
         <div class="card-body">
-            <h1>Create Post</h1>
+            <h4>Create Post</h4>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-            {{-- <form method="post" action="{{route('leave.store')}}" class="form-horizontal" id="driver_reg" novalidate>
+            <form method="post" action="{{route('leave.store')}}" class="form-horizontal" id="driver_reg" novalidate>
                 @csrf
                 @include('hrm.leave.form')
                 <div class="d-flex align-items-center mt-4">
                     <div class="form-group 	required ">
                         <label class="control-label" for="job"></label>
-                        This Field must have value</div> --}}
+                        This Field must have value</div>
                     {{-- @can('customer create') --}}
-
-                    {{-- <div class="form-group ml-auto">
+                    <div class="form-group ml-auto">
                         <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
                                 aria-hidden="true"></i>Save</button>
 
                     </div>
                 </div>
 
-        </form> --}}
-        <example-component></example-component>
+        </form>
+        {{-- <example-component></example-component> --}}
         </div>
 
         <div class="card-footer">

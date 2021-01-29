@@ -25,7 +25,7 @@ class StoreLeaveRequest extends FormRequest
      */
     public function rules()
     {
-        dd($request->all());
+        // dd($request->all());
         return [
             'personale_id' => [
                  'required',
